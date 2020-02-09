@@ -35,3 +35,6 @@
 
 # Ignore database settings
 /config/database.yml
+vendor/bundle/ruby/2.6.0/gems/ffi-1.12.2/ext/ffi_c/libffi-x86_64-linux/.libs/libffi_convenience.la
+vendor/bundle/ruby/2.6.0/gems/ffi-1.12.2/ext/ffi_c/libffi-x86_64-linux/.libs/libffi.la
+vendor/bundle/ruby/2.6.0/gems/ffi-1.12.2/ext/ffi_c/libffi-x86_64-linux/.libs/libffi.so.7

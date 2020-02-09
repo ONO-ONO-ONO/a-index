@@ -55,3 +55,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 追加gem
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'bcrypt'
