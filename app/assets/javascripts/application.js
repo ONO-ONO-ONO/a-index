@@ -12,6 +12,32 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require popper
+//= require bootstrap
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+
+// 画面上部メニューの内容
+$(function(){
+  $('.top_menu-1').hover(function(){
+  $('.top_menu-1').css('font-weight','bold');
+  },function(){
+  $('.top_menu-1').css('font-weight','normal');
+  });
+  $('.top_menu-2').hover(function(){
+  $('.top_menu-2').css('font-weight','bold');
+  },function(){
+  $('.top_menu-2').css('font-weight','normal');
+  });
+  $('.top_menu-3').hover(function(){
+  $('.top_menu-3').css('font-weight','bold');
+  },function(){
+  $('.top_menu-3').css('font-weight','normal');
+  });
+  $('.top_menu-4').hover(function(){
+  $('.top_menu-4').css('font-weight','bold');
+  },function(){
+  $('.top_menu-4').css('font-weight','normal');
+  });
+});
