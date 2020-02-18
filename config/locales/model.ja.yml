@@ -9,11 +9,11 @@ ja:
         id: ID
         name: 名称
         binomial_name: 学名
-        class: 綱
-        order: 目
-        family: 科
-        genus: 属
-        species: 種
+        animal_class: 綱
+        animal_order: 目
+        animal_family: 科
+        animal_genus: 属
+        animal_species: 種
     errors:
       messages:
         too_long: "は半角%{count}文字以内で入力してください。"

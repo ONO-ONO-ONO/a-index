@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_14_092837) do
+ActiveRecord::Schema.define(version: 2020_02_15_023305) do
+
+  create_table "animal_distributions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "animal_id"
+    t.string "distribution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
+  create_table "animal_habitats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "animal_id"
+    t.string "habitat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
 
   create_table "animals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,11 +35,11 @@ ActiveRecord::Schema.define(version: 2020_02_14_092837) do
     t.integer "updated_user"
     t.string "name", null: false
     t.string "binomial_name"
-    t.string "class"
-    t.string "order"
-    t.string "family"
-    t.string "genus"
-    t.string "species"
+    t.string "animal_class"
+    t.string "animal_order"
+    t.string "animal_family"
+    t.string "animal_genus"
+    t.string "animal_species"
     t.decimal "min_length", precision: 10
     t.decimal "min_weight", precision: 10
     t.decimal "max_length", precision: 10
@@ -32,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_02_14_092837) do
     t.string "classification"
     t.datetime "deleted_at"
     t.string "red_list"
+    t.string "animal_sub_species"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
