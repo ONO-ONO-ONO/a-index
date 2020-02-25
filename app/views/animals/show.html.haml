@@ -1,1 +1,40 @@
 %h3.content-header アニマル詳細
+.row
+  = link_to '一覧に戻る', animals_path, :class => 'pull-right btn btn-primary'
+.row
+  = link_to '編集', edit_animal_path(@animal.id), :class => 'btn btn-sm btn-info center-block'
+　
+.col-sm-6
+  = "#{Animal.human_attribute_name("name")}：#{@animal.name}"
+.col-sm-6
+  = "#{Animal.human_attribute_name("binomial_name")}：#{@animal.binomial_name}"
+.col-sm-6
+  = "分類：#{@animal.animal_class}#{@animal.animal_order}#{@animal.animal_family}#{@animal.animal_genus}#{@animal.animal_species}#{@animal.animal_sub_species}"
+
+.col-sm-6
+　
+.col-sm-6
+  = "#{Animal.human_attribute_name("length")}：#{@animal.min_length}cm ～ #{@animal.max_length}cm"
+.col-sm-6
+  = "#{Animal.human_attribute_name("weight")}：#{@animal.min_weight}kg ～ #{@animal.max_weight}kg"
+
+.col-sm-6
+　
+.col-sm-6
+  = "#{AnimalDistribution.model_name.human}："
+.col-sm-6
+  - @animal_distributions.each do |animal_distribution|
+    %div= animal_distribution
+.col-sm-6
+　
+.col-sm-6
+  = "#{AnimalHabitat.model_name.human}："
+.col-sm-6
+  - @animal_habitats.each do |animal_habitat|
+    %div= animal_habitat
+.col-sm-6
+　
+
+
+.col-sm-6
+  = "#{Animal.human_attribute_name("red_list")}：#{@animal.red_list}"

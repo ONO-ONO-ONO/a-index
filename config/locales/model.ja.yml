@@ -4,6 +4,8 @@ ja:
   activerecord:
     models:
       animal: 動物
+      animal_distribution: 分布
+      animal_habitat: 生息地
     attributes:
       animal:
         id: ID
@@ -14,6 +16,14 @@ ja:
         animal_family: 科
         animal_genus: 属
         animal_species: 種
+        animal_sub_species: 亜種
+        length: 体長
+        min_length: 体長(最小)
+        max_length: 体長(最大)
+        weight: 体重
+        min_weight: 体重(最小)
+        max_weight: 体重(最大)
+        red_list: レッドリスト
     errors:
       messages:
         too_long: "は半角%{count}文字以内で入力してください。"

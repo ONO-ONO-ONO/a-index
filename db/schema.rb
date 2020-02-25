@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_15_023305) do
+ActiveRecord::Schema.define(version: 2020_02_18_091249) do
 
   create_table "animal_distributions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "animal_id"
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 2020_02_15_023305) do
     t.string "animal_family"
     t.string "animal_genus"
     t.string "animal_species"
-    t.decimal "min_length", precision: 10
-    t.decimal "min_weight", precision: 10
-    t.decimal "max_length", precision: 10
-    t.decimal "max_weight", precision: 10
+    t.float "min_length"
+    t.float "min_weight"
+    t.float "max_length"
+    t.float "max_weight"
     t.text "detail"
     t.string "classification"
     t.datetime "deleted_at"
