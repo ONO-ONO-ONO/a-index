@@ -49,6 +49,7 @@ class AnimalsController < ApplicationController
   end
 
   def show
+    @animal_images = AnimalImage.where(animal_id: params[:id])
   end
 
   def new
@@ -58,6 +59,8 @@ class AnimalsController < ApplicationController
   end
 
   def edit
+    @animal_images = AnimalImage.where(animal_id: params[:id])
+    @animal_image = AnimalImage.new
   end
 
   def create
@@ -68,8 +71,8 @@ class AnimalsController < ApplicationController
     # @animal.created_user = current_user.id
     # @animal.updated_user = current_user.id
 
-    if animal.save
-
+    if animal.name.present?
+      animal.save
       # =================== 動物の分布を登録する ===================
       params[:animal_distribution][:distribution].each do |d|
         animal_distribution = AnimalDistribution.new
@@ -86,7 +89,7 @@ class AnimalsController < ApplicationController
         animal_habitat.save if animal_habitat.habitat.present?
       end
 
-        redirect_to animal, notice: '作成しました。'
+      redirect_to animal, notice: '作成しました。'
     else
       redirect_to ({controller: 'animals', action: 'new'}), alert: '保存できませんでした'
     end
@@ -166,6 +169,33 @@ class AnimalsController < ApplicationController
     end
   end
 
+
+  def animal_image_upload
+    animal_image = params.require(:animal_image).permit(:animal_id, :image)
+    if animal_image.empty?
+      redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), notice: '画像の追加に失敗しました。'
+      return
+    end
+    @animal_image = AnimalImage.new(
+        animal_id: animal_image['animal_id'],
+        image: animal_image['image'],
+        # created_user: current_user.id,
+        # updated_user: current_user.id,
+      )
+
+    @animal_image.save
+
+    redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), notice: '画像が追加されました。'
+  end
+
+  def remove_image
+    AnimalImage.destroy(params[:format])
+    redirect_to ({controller: 'animals', action: 'index'}),notice: '画像が削除されました。'
+  end
+
+
+
+
   private
   def set_animal
     @animal = Animal.find(params[:id])
@@ -187,20 +217,21 @@ class AnimalsController < ApplicationController
 
   def animal_params
     params.require(:animal).permit(:name,
-                              :binomial_name,
-                              :animal_class,
-                              :animal_order,
-                              :animal_family,
-                              :animal_genus,
-                              :animal_species,
-                              :animal_sub_species,
-                              :min_length,
-                              :max_length,
-                              :min_weight,
-                              :max_weight,
-                              :distribution,
-                              animal_distribution_attributes:[:id, :distribution],
-                              animal_habitat_attributes:[:id, :habitat]
-                              )
-  end
+                                   :binomial_name,
+                                   :animal_class,
+                                   :animal_order,
+                                   :animal_family,
+                                   :animal_genus,
+                                   :animal_species,
+                                   :animal_sub_species,
+                                   :min_length,
+                                   :max_length,
+                                   :min_weight,
+                                   :max_weight,
+                                   :distribution,
+                                   animal_distribution_attributes:[:id, :distribution],
+                                   animal_habitat_attributes:[:id, :habitat],
+                                   animal_image_attributes:[:id, :image]
+                                    )
+        end
 end

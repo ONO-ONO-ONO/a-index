@@ -4,6 +4,32 @@
     = link_to '一覧に戻る', animals_path, :class => 'pull-right btn btn-primary'
 .row
   .col-sm-12
+    - if controller.action_name == 'edit'
+      .box.box-primary
+        .box-header
+          %h5 写真アップロード
+        .box-body
+          - if @animal_images.present?
+            - count = 0
+            - @animal_images.each do |images|
+              - if count % 3 == 0
+                %br
+              = image_tag images.image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！'
+              = link_to '✖',remove_image_animals_path(images.id), data: { confirm: '本当に削除しますか？' }, class: 'col-xs-1'
+              - count += 1
+
+          .col-sm-3
+            = form_for @animal_image, :url => {:action => 'animal_image_upload' } do |ai|
+              .field
+                = ai.file_field :image, :class => 'form-control', :id => 'image_input', :onChange => 'controlImageSubmitButton()'
+              .field
+                = ai.hidden_field :animal_id, :value => @animal.id
+              %div{style:"padding: 5pt"}
+              %actions
+                = ai.submit '保存', :class => 'btn btn-success center-block', :id => 'image_submit'
+        %div{style:"padding: 20pt"}
+
+
     = form_with(model: @animal, local: true) do |f|
       .row
         .col-sm-4
@@ -87,6 +113,17 @@
               -# 動物の体長(最小)
               = f.label :max_weight, Animal.human_attribute_name("max_weight"), :class => 'control-label'
               = f.text_field :max_weight, :class => 'form-control'
+
+
+
+          -# .col-sm-1
+          -# .col-sm-3
+          -#   .field
+          -#     = fields_for :animal_image do |i|
+          -#       -# 動物の画像
+          -#       = i.label :max_weight, AnimalImage.model_name.human, :class => 'control-label'
+          -#       .field
+          -#         = i.file_field :image, :class => 'form-control', :id => 'image_input', :onChange => 'controlImageSubmitButton()'
         %div{style:"padding: 10pt"}
       .row
       .col-sm-12

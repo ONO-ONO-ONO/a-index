@@ -65,3 +65,7 @@ gem 'bcrypt'
 gem 'bootstrap', '~> 4.3.1'
 gem 'rails-i18n', '~> 5.1'
 gem 'ransack'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'annotate'
+gem "font-awesome-rails"

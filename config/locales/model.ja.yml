@@ -6,6 +6,7 @@ ja:
       animal: 動物
       animal_distribution: 分布
       animal_habitat: 生息地
+      animal_image: 画像
     attributes:
       animal:
         id: ID
