@@ -49,8 +49,10 @@
         .col-sm-6
           - if @animal_images.present?
             - count = 0
+            - image_size = '600x450'
             - @animal_images.each do |images|
               - if count % 3 == 0
                 %br
-              = image_tag images.image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！'
+              = image_tag images.image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: image_size
               - count += 1
+              - image_size = '200x150'
