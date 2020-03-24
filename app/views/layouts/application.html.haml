@@ -14,19 +14,21 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title App
+    %title AnimaIndex
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+
   %body
     .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
       %h5.my-0.mr-md-auto.font-weight-normal AnimaIndex
       %nav.my-2.my-md-0.mr-md-3
-        %a.top_menu-1.p-2.text-dark{:href => "#"} 動物図鑑
+        %a.top_menu-1.p-2.text-dark{:href => animals_path} 動物図鑑
         %a.top_menu-2.p-2.text-dark{:href => "#"} コラム
         %a.top_menu-3.p-2.text-dark{:href => "#"} その他
-        %a.top_menu-4.p-2.text-dark{:href => "#"} ＴＯＰ
+        %a.top_menu-4.p-2.text-dark{:href => home_path } ＴＯＰ
       %a.btn.btn-outline-primary{:href => "#"} Sign up
     %p.notice= notice
     %p.alert= alert

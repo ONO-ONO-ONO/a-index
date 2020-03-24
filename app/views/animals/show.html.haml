@@ -1,0 +1,58 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header 動物詳細
+    .content
+      .row
+        .col-sm-12
+          = link_to '一覧に戻る', animals_path, :class => 'pull-right btn btn-primary'
+      .row
+        .col-sm-6
+          .col-sm-12
+            = link_to '編集', edit_animal_path(@animal.id), :class => 'btn btn-sm btn-info center-block'
+          %br
+
+          .col-sm-12
+            = "#{Animal.human_attribute_name("name")}：#{@animal.name}"
+          .col-sm-12
+            = "#{Animal.human_attribute_name("binomial_name")}：#{@animal.binomial_name}"
+          .col-sm-12
+            = "分類：#{@animal.animal_class}#{@animal.animal_order}#{@animal.animal_family}#{@animal.animal_genus}#{@animal.animal_species}#{@animal.animal_sub_species}"
+
+          .col-sm-12
+          　
+          .col-sm-12
+            = "#{Animal.human_attribute_name("length")}：#{@animal.min_length}cm ～ #{@animal.max_length}cm"
+          .col-sm-12
+            = "#{Animal.human_attribute_name("weight")}：#{@animal.min_weight}kg ～ #{@animal.max_weight}kg"
+
+          .col-sm-12
+          　
+          .col-sm-12
+            = "#{AnimalDistribution.model_name.human}："
+          .col-sm-12
+            - @animal_distributions.each do |animal_distribution|
+              %div= animal_distribution
+          .col-sm-12
+          　
+          .col-sm-12
+            = "#{AnimalHabitat.model_name.human}："
+          .col-sm-12
+            - @animal_habitats.each do |animal_habitat|
+              %div= animal_habitat
+          .col-sm-12
+          　
+          .col-sm-12
+            = "#{Animal.human_attribute_name("red_list")}：#{@animal.red_list}"
+
+        .col-sm-6
+          - if @animal_images.present?
+            - count = 0
+            - image_size = '600x450'
+            - @animal_images.each do |images|
+              - if count % 3 == 0
+                %br
+              = image_tag images.image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: image_size
+              - count += 1
+              - image_size = '200x150'
