@@ -1,0 +1,28 @@
+.row.container
+  = paginate @animals, :remote => true
+.alt-table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th.col-xs-1= sort_link(@search_animal, :name , Animal.human_attribute_name("name"))
+        %th.col-xs-1= sort_link(@search_animal, :binomial_name , Animal.human_attribute_name("binomial_name"))
+        %th.col-xs-1= sort_link(@search_animal, :animal_class , Animal.human_attribute_name("animal_class"))
+        %th.col-xs-1= sort_link(@search_animal, :animal_order , Animal.human_attribute_name("animal_order"))
+        %th.col-xs-1= sort_link(@search_animal, :animal_family , Animal.human_attribute_name("animal_family"))
+        %th.col-xs-1= sort_link(@search_animal, :animal_genus , Animal.human_attribute_name("animal_genus"))
+        -# %th.col-xs-1= sort_link(@search_animal, :animal_species , Animal.human_attribute_name("animal_species"))
+        %th.col-xs-1
+        %th.col-xs-1
+    %tbody
+      - @animals.each do |animal|
+        %tr
+          %td= animal.name
+          %td= animal.binomial_name
+          %td= animal.animal_class
+          %td= animal.animal_order
+          %td= animal.animal_family
+          %td= animal.animal_genus
+          -# %td= animal.animal_species
+          %td= link_to '詳細', animal, :class => 'btn btn-sm btn-primary center-block'
+          %td= link_to '編集', edit_animal_path(animal), :class => 'btn btn-sm btn-info center-block'
+= paginate @animals, :remote => true

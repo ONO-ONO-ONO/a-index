@@ -4,7 +4,13 @@ class AnimalsController < ApplicationController
   def index
     # Ransack用意
     @search_animal = Animal.ransack(params[:q])
-    @animals = @search_animal.result(distinct: true)
+    @animals = @search_animal.result(distinct: true).page(params[:page])
+
+    # ページネーションAjax設定
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
