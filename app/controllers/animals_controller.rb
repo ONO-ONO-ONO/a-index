@@ -1,5 +1,7 @@
 class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update]
+  before_action :role_admin
+  before_action :role_admin_redirect, only: [:new, :edit, :create, :update]
 
   def index
     # Ransack用意
@@ -183,6 +185,35 @@ class AnimalsController < ApplicationController
     end
   end
 
+  def role_admin
+    if account_signed_in?
+      if current_account.role < 50
+        @admin_view_display = false
+      elsif current_account.role >= 90
+        @admin_view_display = true
+      end
+    end
+
+    unless  account_signed_in?
+      @admin_view_display = false
+    end
+
+  end
+
+
+  def role_admin_redirect
+    if account_signed_in?
+      if current_account.role < 50
+        redirect_to ({controller: 'animals', action: 'index'}),alert: 'アクセス権限がありません'
+      end
+    end
+
+    unless  account_signed_in?
+      redirect_to ({controller: 'animals', action: 'index'}),alert: 'アクセス権限がありません'
+    end
+
+  end
+
   def animal_params
     params.require(:animal).permit(:name,
                                    :binomial_name,
@@ -201,5 +232,5 @@ class AnimalsController < ApplicationController
                                    animal_habitat_attributes:[:id, :habitat],
                                    animal_image_attributes:[:id, :image]
                                     )
-        end
+  end
 end

@@ -6,7 +6,11 @@
     .row
       .col-sm-10
       .col-sm-2
-        = link_to '新規追加', new_animal_path, :class => 'btn btn-primary'
+        - if @admin_view_display
+          = link_to '新規追加', new_animal_path, :class => 'btn btn-primary'
+        - else
+          %br
+          %br
 
 
     = search_form_for @search_animal do |f|
@@ -19,5 +23,6 @@
           = f.submit '検索', :class => 'btn btn-primary'
         　
       .box-body
+        %br
         #animals
           = render :partial => "animals"
