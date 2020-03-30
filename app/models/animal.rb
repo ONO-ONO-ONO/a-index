@@ -25,9 +25,9 @@
 #  updated_at         :datetime         not null
 #
 class Animal < ApplicationRecord
-  has_one :animal_distribution
-  has_one :animal_habitat
-  has_one :animal_image
+  has_one :animal_distribution, dependent: :destroy
+  has_one :animal_habitat,      dependent: :destroy
+  has_one :animal_image,        dependent: :destroy
   accepts_nested_attributes_for :animal_distribution
   accepts_nested_attributes_for :animal_habitat
   accepts_nested_attributes_for :animal_image

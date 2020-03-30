@@ -2,47 +2,6 @@ class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update]
 
   def index
-    # pathを取得できるようにする
-    path =  Rails.application.routes.recognize_path(request.referrer)
-
-    # animal画面にいる際にはクッキーが残るように設定/animal画面外ではクッキー削除
-    if path[:controller] == "animal"
-      if params[:q].nil?
-        params[:q] = {:name => cookies[:search_name],
-                      :binomial_name => cookies[:search_binomial_name],
-                      :animal_class => cookies[:search_animal_class],
-                      :animal_order => cookies[:search_animal_order],
-                      :animal_family => cookies[:search_animal_family],
-                      :animal_genus => cookies[:search_animal_genus],
-                      :animal_species => cookies[:search_animal_species],
-                      :animal_sub_species => cookies[:search_animal_sub_species]}
-        # params[:page] = cookies[:animal_page] if params[:page].nil?
-      else
-        # cookies.delete :animal_page
-      end
-    else
-      cookies.delete :search_name
-      cookies.delete :search_binomial_name
-      cookies.delete :search_animal_class
-      cookies.delete :search_animal_order
-      cookies.delete :search_animal_family
-      cookies.delete :search_animal_genus
-      cookies.delete :search_animal_species
-      cookies.delete :search_animal_sub_species
-    end
-
-    #set cookies
-    if params[:q] != nil
-      cookies[:search_name] = params[:q][:name]
-      cookies[:search_binomial_name] = params[:q][:binomial_name]
-      cookies[:search_animal_class] = params[:q][:animal_class]
-      cookies[:search_animal_order] = params[:q][:animal_order]
-      cookies[:search_animal_family] = params[:animal_family]
-      cookies[:search_animal_genus] = params[:q][:animal_genus]
-      cookies[:search_animal_species] = params[:q][:animal_species]
-      cookies[:search_animal_sub_species] = params[:q][:animal_sub_species]
-    end
-
     # Ransack用意
     @search_animal = Animal.ransack(params[:q])
     @animals = @search_animal.result(distinct: true)
@@ -56,11 +15,14 @@ class AnimalsController < ApplicationController
     @animal = Animal.new
     @animal.build_animal_distribution
     @animal.build_animal_habitat
+    @save_button = "登録"
   end
 
   def edit
     @animal_images = AnimalImage.where(animal_id: params[:id])
     @animal_image = AnimalImage.new
+    @save_button = "更新"
+    @images_save_button = "登録"
   end
 
   def create
@@ -68,8 +30,8 @@ class AnimalsController < ApplicationController
 
     # [WIP]クリエイトユーザー・アップデートユーザーのコード
     # @user = current_user
-    # @animal.created_user = current_user.id
-    # @animal.updated_user = current_user.id
+    animal.created_user = current_account.id
+    animal.updated_user = current_account.id
 
     if animal.name.present?
       animal.save
@@ -99,7 +61,7 @@ class AnimalsController < ApplicationController
   def update
 
     # [WIP]アップデートユーザーのコード
-    # @animal.updated_user = current_user.id
+    @animal.updated_user = current_account.id
 
     if @animal.update(animal_params)
 

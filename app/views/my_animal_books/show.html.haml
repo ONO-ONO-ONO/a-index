@@ -1,0 +1,31 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header MY動物詳細
+    .content
+      .row
+        .col-sm-12
+          = link_to '一覧に戻る', my_animal_books_path, :class => 'pull-right btn btn-primary'
+      .row
+        .col-sm-6
+          .col-sm-12
+            = link_to '編集', edit_my_animal_book_path(@my_animal.id), :class => 'btn btn-sm btn-info center-block'
+          %br
+
+          .col-sm-12
+            = "#{MyAnimalBook.human_attribute_name("my_animal_name")}：#{@my_animal.my_animal_name}"
+          %br
+          .col-sm-12
+            = "#{MyAnimalBook.human_attribute_name("created_at")}：#{@my_animal.created_at.to_s(:date)}"
+          %br
+          .col-sm-12
+            = "#{MyAnimalBook.human_attribute_name("my_animal_place")}：#{@my_animal.my_animal_place}"
+          %br
+          .col-sm-12
+            = "#{MyAnimalBook.human_attribute_name("my_animal_detail")}：#{@my_animal.my_animal_detail}"
+
+        .col-sm-6
+          %br
+          = image_tag @my_animal.my_animal_image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: '600x450'
+

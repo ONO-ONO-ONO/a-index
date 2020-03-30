@@ -1,0 +1,39 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header MY動物図鑑
+    .row
+      .col-sm-10
+      .col-sm-2
+        = link_to '新規追加', new_my_animal_book_path, :class => 'btn btn-primary'
+
+    .col-xs-12
+      .box.box-primary
+        .box-header
+          .box.box-primary
+            .box-header
+              -# = search_form_for @search_animal, :url => {:action => 'index' } do |f|
+              = search_form_for @search_my_animal do |f|
+                .row
+                  .col-sm-0.5
+                    = f.label :my_animal_name, MyAnimalBook.human_attribute_name("my_animal_name")
+                  .col-sm-3.5
+                    = f.search_field :my_animal_name_cont , :class => "form-control"
+                  .col-sm-2
+                    = f.submit '検索', :class => 'btn btn-primary'
+
+            %br
+            .box-body
+              .row
+                - @my_animals.each do |my_animal|
+                  .col-sm-3
+                    .caption.text-center
+                      .thumbnail{style: "height:250px;"}
+                        = image_tag my_animal.my_animal_image_url,:style => 'height:150px;'
+                        %div
+                          =my_animal.my_animal_name
+                        %div
+                          =my_animal.created_at.to_s(:date)
+                        %div
+                          = link_to '詳細', my_animal, :class => 'btn btn-sm btn-outline-info center-block'

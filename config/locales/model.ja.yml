@@ -7,6 +7,7 @@ ja:
       animal_distribution: 分布
       animal_habitat: 生息地
       animal_image: 画像
+      my_animal_book: My動物図鑑
     attributes:
       animal:
         id: ID
@@ -25,6 +26,14 @@ ja:
         min_weight: 体重(最小)
         max_weight: 体重(最大)
         red_list: レッドリスト
+      my_animal_book:
+        id: ID
+        my_animal_name: 名称
+        my_animal_place: 見つけた場所
+        my_animal_detail: 詳細
+        check: チェック
+        my_animal_image: 写真
+        created_at: 登録日
     errors:
       messages:
         too_long: "は半角%{count}文字以内で入力してください。"

@@ -26,7 +26,7 @@
                 = ai.hidden_field :animal_id, :value => @animal.id
               %div{style:"padding: 5pt"}
               %actions
-                = ai.submit '保存', :class => 'btn btn-success center-block', :id => 'image_submit'
+                = ai.submit @images_save_button, :class => 'btn btn-success center-block', :id => 'image_submit'
         %div{style:"padding: 20pt"}
 
 
@@ -233,4 +233,4 @@
       .row
         .col-sm-3
           .actions
-            = button_tag '登録', class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'
+            = button_tag @save_button, class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'
