@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_085036) do
+ActiveRecord::Schema.define(version: 2020_03_26_022504) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "account_name", default: "", null: false
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 2020_03_24_085036) do
     t.datetime "deleted_at"
     t.string "red_list"
     t.string "animal_sub_species"
+  end
+
+  create_table "my_animal_books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "my_animal_name", null: false
+    t.string "my_animal_place"
+    t.text "my_animal_detail"
+    t.integer "check", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "my_animal_image", null: false
   end
 
   create_table "old_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

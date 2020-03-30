@@ -27,7 +27,7 @@
       %nav.my-2.my-md-0.mr-md-3
         - if account_signed_in?
           %a.top_menu-1.p-2.text-dark.align-middle{:href => animals_path} 動物図鑑
-          %a.top_menu-2.p-2.text-dark.align-middle{:href => "#"} コラム
+          %a.top_menu-2.p-2.text-dark.align-middle{:href => my_animal_books_path} ＭＹ図鑑
           %a.top_menu-3.p-2.text-dark.align-middle{:href => "#"} その他
           %a.top_menu-4.p-2.text-dark.align-middle{:href => home_path } ＴＯＰ
           = link_to "ログアウト", destroy_account_session_path, :method => :delete, :class => 'btn btn-outline-primary'
@@ -37,12 +37,11 @@
           %a.top_menu-4.p-2.text-dark.align-middle{:href => home_path } ＴＯＰ
           %a.btn.btn-outline-primary{:href => account_session_path} ログイン
           %a.btn.btn-primary{:href => new_account_registration_path} アカウント作成
-    -# %p.notice-info= notice
-    .col-sm-12
-      .alert-info{:role => "notice"}
-        %strong= notice
-      .alert-danger{:role => "alert"}
-        %strong= alert
 
-    -# %p.alert= alert
+    .col-sm-12
+      - if alert
+        .alert.alert-danger= alert
+      - if notice
+        .alert.alert-info= notice
+
     = yield
