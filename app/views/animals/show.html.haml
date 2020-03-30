@@ -10,7 +10,7 @@
       .row
         .col-sm-6
           .col-sm-12
-            = link_to '編集', edit_animal_path(@animal.id), :class => 'btn btn-sm btn-info center-block'
+            = link_to '編集', edit_animal_path(@animal.id), :class => 'btn btn-sm btn-info center-block' if @admin_view_display
           %br
 
           .col-sm-12

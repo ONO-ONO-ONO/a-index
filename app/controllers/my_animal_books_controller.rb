@@ -1,5 +1,6 @@
 class MyAnimalBooksController < ApplicationController
   before_action :set_my_animal, only: [:show, :edit, :update]
+  before_action :authenticate_account! #これでaccounts/sign_inへリダイレクト
 
   def index
     # Ransack用意
