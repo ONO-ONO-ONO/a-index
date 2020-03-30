@@ -1,0 +1,45 @@
+# モデルは全て activerecord 以下に記述する。
+# これにより、User.model_name.human / User.human_attribute_name({attr_name})で使用可能。
+ja:
+  activerecord:
+    models:
+      animal: 動物
+      animal_distribution: 分布
+      animal_habitat: 生息地
+      animal_image: 画像
+      my_animal_book: My動物図鑑
+    attributes:
+      animal:
+        id: ID
+        name: 名称
+        binomial_name: 学名
+        animal_class: 綱
+        animal_order: 目
+        animal_family: 科
+        animal_genus: 属
+        animal_species: 種
+        animal_sub_species: 亜種
+        length: 体長
+        min_length: 体長(最小)
+        max_length: 体長(最大)
+        weight: 体重
+        min_weight: 体重(最小)
+        max_weight: 体重(最大)
+        red_list: レッドリスト
+      my_animal_book:
+        id: ID
+        my_animal_name: 名称
+        my_animal_place: 見つけた場所
+        my_animal_detail: 詳細
+        check: チェック
+        my_animal_image: 写真
+        created_at: 登録日
+    errors:
+      messages:
+        too_long: "は半角%{count}文字以内で入力してください。"
+        blank: "を入力してください。"
+        empty: "を入力してください。"
+        wrong_length: "は%{count}文字で入力してください。"
+        duplicate_dates: "が他のレコードと重複しています。"
+        greater_than_or_equal_to: "は%{count}以上の値にしてください。"
+        less_than: "は%{count}より小さい値にしてください。"

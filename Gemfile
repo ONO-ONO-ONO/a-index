@@ -51,3 +51,27 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# development環境(ローカル環境)でのみ機能する
+group :development, :test do
+  gem 'better_errors'     # 開発中のエラー画面をリッチにする
+  gem 'binding_of_caller' # 開発中のエラー画面にさらに変数の値を表示する
+end
+
+# 追加gem
+gem 'jquery-rails'
+gem 'haml-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'rails-i18n', '~> 5.1'
+gem 'ransack'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'annotate'
+gem 'font-awesome-rails'
+gem 'devise'
+gem "devise-i18n"
+gem 'cancancan'
+gem 'kaminari'
+
+
+

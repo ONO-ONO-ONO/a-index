@@ -1,0 +1,47 @@
+-# !!!
+-# %html
+-#   %head
+-#     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+-#     %title AIndex
+-#     = csrf_meta_tags
+-#     = csp_meta_tag
+-#     = stylesheet_link_tag    'application', media: 'all'
+-#     = javascript_include_tag 'application'
+-#   %body
+-#     = yield
+
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title AnimaIndex
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+
+  %body
+    .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
+      %h5.my-0.mr-md-auto.font-weight-normal AnimaIndex
+      %nav.my-2.my-md-0.mr-md-3
+        - if account_signed_in?
+          %a.top_menu-1.p-2.text-dark.align-middle{:href => animals_path} 動物図鑑
+          %a.top_menu-2.p-2.text-dark.align-middle{:href => my_animal_books_path} ＭＹ図鑑
+          %a.top_menu-3.p-2.text-dark.align-middle{:href => "#"} その他
+          %a.top_menu-4.p-2.text-dark.align-middle{:href => home_path } ＴＯＰ
+          = link_to "ログアウト", destroy_account_session_path, :method => :delete, :class => 'btn btn-outline-primary'
+
+        - unless account_signed_in?
+          %a.top_menu-1.p-2.text-dark.align-middle{:href => animals_path} 動物図鑑
+          %a.top_menu-4.p-2.text-dark.align-middle{:href => home_path } ＴＯＰ
+          %a.btn.btn-outline-primary{:href => account_session_path} ログイン
+          %a.btn.btn-primary{:href => new_account_registration_path} アカウント作成
+
+    .col-sm-12
+      - if alert
+        .alert.alert-danger= alert
+      - if notice
+        .alert.alert-info= notice
+
+    = yield

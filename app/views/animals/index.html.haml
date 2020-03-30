@@ -1,0 +1,28 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header 動物図鑑
+    .row
+      .col-sm-10
+      .col-sm-2
+        - if @admin_view_display
+          = link_to '新規追加', new_animal_path, :class => 'btn btn-primary'
+        - else
+          %br
+          %br
+
+
+    = search_form_for @search_animal do |f|
+      .row
+        .col-sm-0.5
+          = f.label :name, Animal.human_attribute_name("name")
+        .col-sm-3.5
+          = f.search_field :name_cont , :class => "form-control"
+        .col-sm-2
+          = f.submit '検索', :class => 'btn btn-primary'
+        　
+      .box-body
+        %br
+        #animals
+          = render :partial => "animals"
