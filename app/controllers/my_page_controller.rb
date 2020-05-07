@@ -4,6 +4,7 @@ class MyPageController < ApplicationController
     @account = current_account
     @account_role = Role.find_by(role_id: @account.role)
     @account_images = AccountImage.where(account_id: @account.id)
+    @my_animal_books_count = MyAnimalBook.where(user_id: @account.id).count
   end
 
   def edit
@@ -16,6 +17,11 @@ class MyPageController < ApplicationController
 
   def update
     @account = current_account
+
+    #選択肢の項目に合ったrole_idを取得する
+    role = Role.find_by(role_name: params[:account][:role])
+    params[:account][:role] = role.role_id
+
     if @account.update(account_params)
       redirect_to my_page_path, notice: '更新しました'
     else

@@ -15,6 +15,7 @@ ja:
         account_name: アカウント名
         email: メールアドレス
         role: 役職
+        password: パスワード
       animal:
         id: ID
         name: 名称
