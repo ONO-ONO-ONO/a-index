@@ -1,0 +1,33 @@
+.row
+  .col-sm-1
+  .col-sm-10
+    .row
+      .col-sm-12
+        %h1 AnimaIndex
+      .col-sm-12
+        %h2 動物図鑑
+    %br
+    %br
+    .row
+      .col-sm-12
+        %h3 これは何？
+      .col-sm-12
+        %h5 ・自作の動物図鑑サイトである。
+        %h5 ・ログイン機能を搭載、各ユーザーは日常で発見した動物を記録する自分専用の動物図鑑を作ることが出来る。
+        %h5 　(ポケモンGO みたいなもの)
+    %br
+    %br
+    %br
+    .row.text-center
+      .col-sm-3
+      .col-sm-2
+        %a.btn.btn-primary{:href => account_session_path} ログイン
+      .col-sm-2
+      .col-sm-2
+        %a.btn.btn-primary{:href => new_account_registration_path} アカウント作成
+    %br
+    %br
+    .row.text-center
+      .col-sm-4
+      .col-sm-4
+        %a.btn.btn-secondary{:href => home_path} TOPに戻る

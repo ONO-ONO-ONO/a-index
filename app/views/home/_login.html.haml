@@ -1,0 +1,52 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header TOPページ
+
+    %br
+
+    .card.border-dark.mb-3
+      .card-header お知らせ
+      .card-body.text-dark
+        - @created_animals.each do |created_animal|
+          %p.card-text
+            = "#{created_animal.created_at.to_s}　　▶　動物図鑑に「#{created_animal.name}」が、新規追加されました。"
+
+    .row
+      .col-sm-6.col-md-3
+        .card.bg-light.mb-3.img-thumbnail.card.border-primary.mb-3
+          %img.card-img-top{:alt => "画像", :src => "/assets/top_animalindex.png"}
+          .card-body.px-2.py-3
+            %h5.card-title 動物図鑑
+            %p.card-text 本サイトで公開中の動物図鑑。
+            %p.mb-0
+              %a.btn.btn-outline-primary{:href => animals_path} 動物図鑑へGO
+
+      .col-sm-6.col-md-3
+        .card.bg-light.mb-3.img-thumbnail.card.border-success.mb-3
+          %img.card-img-top{:alt => "画像", :src => "/assets/top_my_animal_book.png"}
+          .card-body.px-2.py-3
+            %h5.card-title ＭＹ図鑑
+            %p.card-text あなただけの動物図鑑。
+            %p.mb-0
+              %a.btn.btn-outline-success{:href => my_animal_books_path} ＭＹ図鑑へGO
+
+      .col-sm-6.col-md-3
+        .card.bg-light.mb-3.img-thumbnail.card.border-warning.mb-3
+          %img.card-img-top{:alt => "画像", :src => "/assets/unknown.png"}
+          .card-body.px-2.py-3
+            %h5.card-title 空き枠
+            %p.card-text 空き枠
+            %p.mb-0
+              %a.btn.btn-outline-warning{:href => home_path} 空き枠
+
+      .col-sm-6.col-md-3
+        .card.bg-light.mb-3.img-thumbnail.card.border-danger.mb-3
+          %img.card-img-top{:alt => "画像", :src => "/assets/unknown.png"}
+          .card-body.px-2.py-3
+            %h5.card-title 空き枠
+            %p.card-text 空き枠
+            %p.mb-0
+              %a.btn.btn-outline-danger{:href => home_path} 空き枠
+

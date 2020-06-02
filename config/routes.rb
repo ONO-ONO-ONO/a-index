@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   devise_for :accounts
 
   get "home/" => "home#top"
+  get "home/explanation" => "home#explanation"
 
   resources :animals do
     collection do
