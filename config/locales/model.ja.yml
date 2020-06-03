@@ -3,12 +3,19 @@
 ja:
   activerecord:
     models:
+      account: アカウント
       animal: 動物
       animal_distribution: 分布
       animal_habitat: 生息地
       animal_image: 画像
       my_animal_book: My動物図鑑
+
     attributes:
+      account:
+        account_name: アカウント名
+        email: メールアドレス
+        role: 役職
+        password: パスワード
       animal:
         id: ID
         name: 名称
