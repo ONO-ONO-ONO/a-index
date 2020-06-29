@@ -27,4 +27,8 @@ class Account < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :account_name, presence: true, length: { maximum: 10 }
+  validates :email, presence: true, length: { maximum: 30 }
+
 end

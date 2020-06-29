@@ -39,10 +39,8 @@
           .field
             = f.hidden_field :user_id, :value => @account_id
 
-
-
       %div{style:"padding: 10pt"}
       .row
         .col-sm-3
           .actions
-            = button_tag @save_button, class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'
+            = button_tag "登録", class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'

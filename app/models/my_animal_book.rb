@@ -14,4 +14,8 @@
 #
 class MyAnimalBook < ApplicationRecord
   mount_uploader :my_animal_image, MyAnimalImageUploader
+
+  validates :my_animal_name, presence: true, length: { maximum: 30 }
+  validates :my_animal_place, length: { maximum: 20 }
+  validates :my_animal_image, presence: true
 end
