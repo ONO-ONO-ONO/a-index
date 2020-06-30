@@ -142,8 +142,9 @@ class AnimalsController < ApplicationController
 
   def animal_image_upload
     animal_image = params.require(:animal_image).permit(:animal_id, :image)
+
     if animal_image.empty?
-      redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), notice: '画像の追加に失敗しました。'
+      redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), notice: '画像が選択されていません。'
       return
     end
     @animal_image = AnimalImage.new(
@@ -155,16 +156,24 @@ class AnimalsController < ApplicationController
 
     @animal_image.save
 
-    redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), notice: '画像が追加されました。'
+    # 拡張子が/jpg|JPG|jpeg|JPEG|png|PNG/以外の物だった場合、保存させないようにする
+    image_name = @animal_image.image_identifier
+    image_extension = image_name.match(/.([^.]*?)$/)[1]
+    case image_name
+    when /jpg|JPG|jpeg|JPEG|png|PNG/
+      redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), notice: '画像が追加されました。'
+    else
+      @animal_image.remove_image!
+      @animal_image.save
+      @animal_image.delete
+      redirect_to ({controller: 'animals', action: 'edit', id: animal_image['animal_id']}), alert: '画像を保存する際は拡張子をJPG・PNGのどちらかにしてください。'
+    end
   end
 
   def remove_image
     AnimalImage.destroy(params[:format])
     redirect_to ({controller: 'animals', action: 'index'}),notice: '画像が削除されました。'
   end
-
-
-
 
   private
   def set_animal
