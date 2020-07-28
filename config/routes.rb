@@ -64,6 +64,4 @@ Rails.application.routes.draw do
   post "my_page/account_image_upload" => "my_page#account_image_upload"
   get "my_page/remove_image" => "my_page#remove_image"
 
-
-
 end

@@ -18,7 +18,7 @@
               = link_to '✖',remove_image_animals_path(images.id), data: { confirm: '本当に削除しますか？' }, class: 'col-xs-1'
               - count += 1
 
-          .col-sm-3
+          .col-sm-6
             = form_for @animal_image, :url => {:action => 'animal_image_upload' } do |ai|
               .field
                 = ai.file_field :image, :class => 'form-control', :id => 'image_input', :onChange => 'controlImageSubmitButton()'
