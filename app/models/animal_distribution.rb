@@ -11,4 +11,6 @@
 #
 class AnimalDistribution < ApplicationRecord
   belongs_to :animal
+
+  validates :distribution, length: { maximum: 15 }
 end

@@ -127,110 +127,57 @@
         %div{style:"padding: 10pt"}
       .row
       .col-sm-12
-        - if controller.action_name == 'new'
-          = fields_for :animal_distribution do |d|
-            = d.label :distribution, "#{AnimalDistribution.model_name.human}(最大５地域記載可能)", :class => 'control-label'
-            .row
-              .col-sm-2
-                .field
-                  -# 動物の分布[1]
-                  = d.text_field :distribution, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[2]
-                  = d.text_field :distribution, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[3]
-                  = d.text_field :distribution, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[4]
-                  = d.text_field :distribution, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[5]
-                  = d.text_field :distribution, :class => 'form-control', multiple: true
-          %div{style:"padding: 10pt"}
+        = fields_for :animal_distribution do |d|
+          = d.label :distribution, "#{AnimalDistribution.model_name.human}(最大５地域記載可能)", :class => 'control-label'
+          .row
+            .col-sm-2
+              .field
+                -# 動物の分布[1]
+                = d.text_field :distribution, value: @animal_distributions[0], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の分布[2]
+                = d.text_field :distribution, value: @animal_distributions[1], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の分布[3]
+                = d.text_field :distribution, value: @animal_distributions[2], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の分布[4]
+                = d.text_field :distribution, value: @animal_distributions[3], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の分布[5]
+                = d.text_field :distribution, value: @animal_distributions[4], :class => 'form-control', multiple: true
 
-          = fields_for :animal_habitat do |h|
-            = h.label :habitat, "#{AnimalHabitat.model_name.human}(最大５地域記載可能)", :class => 'control-label'
-            .row
-              .col-sm-2
-                .field
-                  -# 動物の生息地[1]
-                  = h.text_field :habitat, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[2]
-                  = h.text_field :habitat, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[3]
-                  = h.text_field :habitat, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[4]
-                  = h.text_field :habitat, :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[5]
-                  = h.text_field :habitat, :class => 'form-control', multiple: true
-
-        - if controller.action_name == 'edit'
-          = fields_for :animal_distribution do |d|
-            = d.label :distribution, "#{AnimalDistribution.model_name.human}(最大５地域記載可能)", :class => 'control-label'
-            .row
-              .col-sm-2
-                .field
-                  -# 動物の分布[1]
-                  = d.text_field :distribution, value: @animal_distributions[0], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[2]
-                  = d.text_field :distribution, value: @animal_distributions[1], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[3]
-                  = d.text_field :distribution, value: @animal_distributions[2], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[4]
-                  = d.text_field :distribution, value: @animal_distributions[3], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の分布[5]
-                  = d.text_field :distribution, value: @animal_distributions[4], :class => 'form-control', multiple: true
-
-          %div{style:"padding: 10pt"}
-          = fields_for :animal_habitat do |h|
-            = h.label :habitat, "#{AnimalHabitat.model_name.human}(最大５地域記載可能)", :class => 'control-label'
-            .row
-              .col-sm-2
-                .field
-                  -# 動物の生息地[1]
-                  = h.text_field :habitat, value: @animal_habitats[0], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[2]
-                  = h.text_field :habitat, value: @animal_habitats[1], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[3]
-                  = h.text_field :habitat, value: @animal_habitats[2], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[4]
-                  = h.text_field :habitat, value: @animal_habitats[3], :class => 'form-control', multiple: true
-              .col-sm-2
-                .field
-                  -# 動物の生息地[5]
-                  = h.text_field :habitat, value: @animal_habitats[4], :class => 'form-control', multiple: true
-
-
+        %div{style:"padding: 10pt"}
+        = fields_for :animal_habitat do |h|
+          = h.label :habitat, "#{AnimalHabitat.model_name.human}(最大５地域記載可能)", :class => 'control-label'
+          .row
+            .col-sm-2
+              .field
+                -# 動物の生息地[1]
+                = h.text_field :habitat, value: @animal_habitats[0], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の生息地[2]
+                = h.text_field :habitat, value: @animal_habitats[1], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の生息地[3]
+                = h.text_field :habitat, value: @animal_habitats[2], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の生息地[4]
+                = h.text_field :habitat, value: @animal_habitats[3], :class => 'form-control', multiple: true
+            .col-sm-2
+              .field
+                -# 動物の生息地[5]
+                = h.text_field :habitat, value: @animal_habitats[4], :class => 'form-control', multiple: true
 
       %div{style:"padding: 10pt"}
       .row
         .col-sm-3
           .actions
-            = button_tag @save_button, class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'
+            = button_tag "登録", class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'

@@ -11,4 +11,6 @@
 #
 class AnimalHabitat < ApplicationRecord
   belongs_to :animal
+
+  validates :habitat, length: { maximum: 15 }
 end

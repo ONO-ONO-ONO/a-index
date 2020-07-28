@@ -32,4 +32,19 @@ class Animal < ApplicationRecord
   accepts_nested_attributes_for :animal_habitat
   accepts_nested_attributes_for :animal_image
 
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :binomial_name, length: { maximum: 60 }
+  validates :classification, length: { maximum: 6 }
+  validates :animal_class, length: { maximum: 6 }
+  validates :animal_order, length: { maximum: 30 }
+  validates :animal_family, length: { maximum: 30 }
+  validates :animal_genus, length: { maximum: 30 }
+  validates :animal_species, length: { maximum: 30 }
+  validates :animal_sub_species, length: { maximum: 30 }
+  validates :min_length, length: { maximum: 8 }, numericality: true, allow_blank: true
+  validates :max_length, length: { maximum: 8 }, numericality: true, allow_blank: true
+  validates :min_weight, length: { maximum: 8 }, numericality: true, allow_blank: true
+  validates :max_length, length: { maximum: 8 }, numericality: true, allow_blank: true
+  validates :red_list, length: { maximum: 2 }
+
 end
