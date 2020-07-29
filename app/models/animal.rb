@@ -44,7 +44,7 @@ class Animal < ApplicationRecord
   validates :min_length, length: { maximum: 8 }, numericality: true, allow_blank: true
   validates :max_length, length: { maximum: 8 }, numericality: true, allow_blank: true
   validates :min_weight, length: { maximum: 8 }, numericality: true, allow_blank: true
-  validates :max_length, length: { maximum: 8 }, numericality: true, allow_blank: true
+  validates :max_weight, length: { maximum: 8 }, numericality: true, allow_blank: true
   validates :red_list, length: { maximum: 2 }
 
 end

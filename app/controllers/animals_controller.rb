@@ -36,56 +36,63 @@ class AnimalsController < ApplicationController
   end
 
   def create
+    # @animal = Animal.new(animal_params)
+    # if @animal.save
+    #   redirect_to @animal, notice: '作成しました。'
+    # else
+    #   render "new"
+    # end
+    
     @animal = Animal.new(animal_params)
 
     @animal.created_user = current_account.id
     @animal.updated_user = current_account.id
 
-    if @animal.valid?
+    if @animal.save
 
-      # 分布のバリデーション確認
-      if params[:animal_distribution][:distribution][0].length >= 15 || params[:animal_distribution][:distribution][1].length >= 15 || params[:animal_distribution][:distribution][2].length >= 15 || params[:animal_distribution][:distribution][3].length >= 15 || params[:animal_distribution][:distribution][4].length >= 15
-        @animal = Animal.new(animal_params) #newで入力した値を代入
-        @animal_distributions = params[:animal_distribution][:distribution]
-        @animal_habitats = params[:animal_habitat][:habitat]
-        flash.now[:alert] = "分布は15文字以内で入力してください"
-        render 'new' 
-        return
-      end
-      # 生息地のバリデーション確認
-      if params[:animal_habitat][:habitat][0].length >= 15 || params[:animal_habitat][:habitat][1].length >= 15 || params[:animal_habitat][:habitat][2].length >= 15 || params[:animal_habitat][:habitat][3].length >= 15 || params[:animal_habitat][:habitat][4].length >= 15
-        @animal = Animal.new(animal_params) #newで入力した値を代入
-        @animal_distributions = params[:animal_distribution][:distribution]
-        @animal_habitats = params[:animal_habitat][:habitat]
-        flash.now[:alert] = "生息地は15文字以内で入力してください"
-        render 'new' 
-        return
-      end
+      # # 分布のバリデーション確認
+      # if params[:animal_distribution][:distribution][0].length >= 15 || params[:animal_distribution][:distribution][1].length >= 15 || params[:animal_distribution][:distribution][2].length >= 15 || params[:animal_distribution][:distribution][3].length >= 15 || params[:animal_distribution][:distribution][4].length >= 15
+      #   @animal = Animal.new(animal_params) #newで入力した値を代入
+      #   @animal_distributions = params[:animal_distribution][:distribution]
+      #   @animal_habitats = params[:animal_habitat][:habitat]
+      #   flash.now[:alert] = "分布は15文字以内で入力してください"
+      #   render 'new' 
+      #   return
+      # end
+      # # 生息地のバリデーション確認
+      # if params[:animal_habitat][:habitat][0].length >= 15 || params[:animal_habitat][:habitat][1].length >= 15 || params[:animal_habitat][:habitat][2].length >= 15 || params[:animal_habitat][:habitat][3].length >= 15 || params[:animal_habitat][:habitat][4].length >= 15
+      #   @animal = Animal.new(animal_params) #newで入力した値を代入
+      #   @animal_distributions = params[:animal_distribution][:distribution]
+      #   @animal_habitats = params[:animal_habitat][:habitat]
+      #   flash.now[:alert] = "生息地は15文字以内で入力してください"
+      #   render 'new' 
+      #   return
+      # end
 
-      @animal.save
-      # =================== 動物の分布を登録する ===================
-      params[:animal_distribution][:distribution].each do |d|
-        animal_distribution = AnimalDistribution.new
-        animal_distribution.animal_id = @animal.id
-        animal_distribution.distribution = d
-        animal_distribution.save if animal_distribution.distribution.present?
-      end
+      # @animal.save
+      # # =================== 動物の分布を登録する ===================
+      # params[:animal_distribution][:distribution].each do |d|
+      #   animal_distribution = AnimalDistribution.new
+      #   animal_distribution.animal_id = @animal.id
+      #   animal_distribution.distribution = d
+      #   animal_distribution.save if animal_distribution.distribution.present?
+      # end
 
-      # =================== 動物の生息地を登録する ===================
-      params[:animal_habitat][:habitat].each do |h|
-        animal_habitat = AnimalHabitat.new
-        animal_habitat.animal_id = @animal.id
-        animal_habitat.habitat = h
-        animal_habitat.save if animal_habitat.habitat.present?
-      end
+      # # =================== 動物の生息地を登録する ===================
+      # params[:animal_habitat][:habitat].each do |h|
+      #   animal_habitat = AnimalHabitat.new
+      #   animal_habitat.animal_id = @animal.id
+      #   animal_habitat.habitat = h
+      #   animal_habitat.save if animal_habitat.habitat.present?
+      # end
 
       redirect_to @animal, notice: '作成しました。'
     else
-      animal_alert = @animal
-      @animal = Animal.new(animal_params) #newで入力した値を代入
-      @animal_distributions = params[:animal_distribution][:distribution]
-      @animal_habitats = params[:animal_habitat][:habitat]
-      flash.now[:alert] = animal_alert.errors.full_messages.first
+      # animal_alert = @animal
+      # @animal = Animal.new(animal_params) #newで入力した値を代入
+      # @animal_distributions = params[:animal_distribution][:distribution]
+      # @animal_habitats = params[:animal_habitat][:habitat]
+      # flash.now[:alert] = animal_alert.errors.full_messages.first
       render 'new'
     end
   end
