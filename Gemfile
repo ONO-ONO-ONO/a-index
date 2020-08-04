@@ -71,7 +71,6 @@ gem 'annotate'
 gem 'font-awesome-rails'
 gem 'devise'
 gem "devise-i18n"
-gem 'cancancan'
 gem 'kaminari'
 gem 'file_validators'
 gem 'seed-fu'
