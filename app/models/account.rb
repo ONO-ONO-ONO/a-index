@@ -45,5 +45,11 @@ class Account < ApplicationRecord
   def my_animal_books_count
     return MyAnimalBook.where(user_id: self.id).count
   end
+
+  # 選択肢の項目に合ったrole_idを取得する
+  def set_role_id
+    role = Role.find_by(role_name: self[:account][:role])
+    params[:account][:role] = role.role_id
+  end
   
 end
