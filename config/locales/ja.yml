@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    models:
+      animal: 動物
+      my_animal_book: My動物図鑑
+    attributes:
+      animal:
+        name: 名前
+    errors:
+      models:
+        animal:
+          attributes:
+            name:
+              format: '%{message}'
+              

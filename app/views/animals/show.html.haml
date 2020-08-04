@@ -15,8 +15,10 @@
 
           .col-sm-12
             = "#{Animal.human_attribute_name("name")}：#{@animal.name}"
+          %div{style:"padding: 2.5pt"}
           .col-sm-12
             = "#{Animal.human_attribute_name("binomial_name")}：#{@animal.binomial_name}"
+          %div{style:"padding: 2.5pt"}
           .col-sm-12
             = "分類：#{@animal.animal_class}#{@animal.animal_order}#{@animal.animal_family}#{@animal.animal_genus}#{@animal.animal_species}#{@animal.animal_sub_species}"
 
@@ -24,24 +26,26 @@
           　
           .col-sm-12
             = "#{Animal.human_attribute_name("length")}：#{@animal.min_length}cm ～ #{@animal.max_length}cm"
+          %div{style:"padding: 2.5pt"}
           .col-sm-12
             = "#{Animal.human_attribute_name("weight")}：#{@animal.min_weight}kg ～ #{@animal.max_weight}kg"
-
           .col-sm-12
           　
           .col-sm-12
-            = "#{AnimalDistribution.model_name.human}："
+            = "#{Animal.human_attribute_name("distribution_1")}　："
+            = @animal.distribution_1
+            = "、#{@animal.distribution_2}" if @animal.distribution_2.present?
+            = "、#{@animal.distribution_3}" if @animal.distribution_3.present?
+            = "、#{@animal.distribution_4}" if @animal.distribution_4.present?
+            = "、#{@animal.distribution_5}" if @animal.distribution_5.present?
+          %div{style:"padding: 2.5pt"}
           .col-sm-12
-            - @animal_distributions.each do |animal_distribution|
-              %div= animal_distribution
-          .col-sm-12
-          　
-          .col-sm-12
-            = "#{AnimalHabitat.model_name.human}："
-          .col-sm-12
-            - @animal_habitats.each do |animal_habitat|
-              %div= animal_habitat
-          .col-sm-12
+            = "#{Animal.human_attribute_name("habitat_1")}："
+            = @animal.habitat_1
+            = "、#{@animal.habitat_2}" if @animal.habitat_2.present?
+            = "、#{@animal.habitat_3}" if @animal.habitat_3.present?
+            = "、#{@animal.habitat_4}" if @animal.habitat_4.present?
+            = "、#{@animal.habitat_5}" if @animal.habitat_5.present?
           　
           .col-sm-12
             = "#{Animal.human_attribute_name("red_list")}：#{@animal.red_list}"

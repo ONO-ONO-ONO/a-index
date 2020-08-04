@@ -22,6 +22,28 @@
 class Account < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  
+  has_one :account_image,        dependent: :destroy
+  accepts_nested_attributes_for :account_image
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         # letter_opener回りの設定が終わったら以下コメントアウト部分を実装、上の行の:recoverable, :rememberable, :validatableを削除予定
+        #  :recoverable, :rememberable, :trackable, :validatable,
+        #  :confirmable
+
+  # 一時的にaccount_nameのバリテーションをオフにする。devise回りを修正出来たら復活
+  # validates :account_name, presence: true, length: { maximum: 10 }
+  validates :email, presence: true, length: { maximum: 30 }
+
+  # 役職名を取得
+  def role_name
+    return Role.find_by(role_id: self.role).role_name
+  end
+
+  # ログインアカウントのMy動物図鑑の登録数
+  def my_animal_books_count
+    return MyAnimalBook.where(user_id: self.id).count
+  end
+  
 end

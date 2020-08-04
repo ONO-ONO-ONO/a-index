@@ -4,4 +4,201 @@
 
     %h3.content-header 動物新規登録
     .content
-      = render 'form'
+      .row
+        .col-sm-10
+        .col-sm-2
+          = link_to '一覧に戻る', animals_path, :class => 'pull-right btn btn-primary'
+      
+      %div{style:"padding: 5pt"}
+      .row
+        = form_for(@animal) do |f|
+          = render 'layouts/error_messages', model: f.object
+
+          .row
+            .col-sm-4
+              .field
+                -# 動物の名前
+                = f.label :name, Animal.human_attribute_name("name"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :name, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:name)[0]}" if @animal.errors.full_messages_for(:name).present?
+            .col-sm-4
+              .field
+                -# 動物の学名
+                = f.label :binomial_name, Animal.human_attribute_name("binomial_name"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :binomial_name, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:binomial_name)[0]}" if @animal.errors.full_messages_for(:binomial_name).present?
+            %div{style:"padding: 40pt"}
+
+          .row
+            .col-sm-2
+              .field
+                -# 動物の綱(こう)
+                = f.label :animal_class, Animal.human_attribute_name("animal_class"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :animal_class, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:animal_class)[0]}" if @animal.errors.full_messages_for(:animal_class).present?
+            .col-sm-2
+              .field
+                -# 動物の目(もく)
+                = f.label :animal_order, Animal.human_attribute_name("animal_order"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :animal_order, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:animal_order)[0]}" if @animal.errors.full_messages_for(:animal_order).present?
+            .col-sm-2
+              .field
+                -# 動物の科(もく)
+                = f.label :animal_family, Animal.human_attribute_name("animal_family"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :animal_family, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:animal_family)[0]}" if @animal.errors.full_messages_for(:animal_family).present?
+            %div{style:"padding: 40pt"}
+
+          .row
+            .col-sm-2
+              .field
+                -# 動物の属(ぞく)
+                = f.label :animal_genus, Animal.human_attribute_name("animal_genus"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :animal_genus, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:animal_genus)[0]}" if @animal.errors.full_messages_for(:animal_genus).present?
+            .col-sm-2
+              .field
+                -# 動物の種(しゅ)
+                = f.label :animal_species, Animal.human_attribute_name("animal_species"), :class => 'col-sm-4 control-label'
+                .col-sm-12
+                  = f.text_field :animal_species, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:animal_species)[0]}" if @animal.errors.full_messages_for(:animal_species).present?
+            .col-sm-2
+              .field
+                -# 動物の亜種(あしゅ)
+                = f.label :animal_sub_species, Animal.human_attribute_name("animal_sub_species"), :class => 'col-sm-6 control-label'
+                .col-sm-12
+                  = f.text_field :animal_sub_species, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:animal_sub_species)[0]}" if @animal.errors.full_messages_for(:animal_sub_species).present?
+          %div{style:"padding: 10pt"}
+            
+          .row
+          .col-sm-12
+            .row
+              .col-sm-2
+                .field
+                  -# 動物の体長(最小)
+                  = f.label :min_length, Animal.human_attribute_name("min_length"), :class => 'control-label'
+                  = f.text_field :min_length, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:min_length)[0]}" if @animal.errors.full_messages_for(:min_length).present?
+              .col-sm-0{style: 'margin-top: 35px;'}
+                = "～"
+              .col-sm-2
+                .field
+                  -# 動物の体長(最小)
+                  = f.label :max_length, Animal.human_attribute_name("max_length"), :class => 'control-label'
+                  = f.text_field :max_length, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:max_length)[0]}" if @animal.errors.full_messages_for(:max_length).present?
+              .col-sm-1
+              .col-sm-2
+                .field
+                  -# 動物の体長(最小)
+                  = f.label :min_weight, Animal.human_attribute_name("min_weight"), :class => 'control-label'
+                  = f.text_field :min_weight, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:min_weight)[0]}" if @animal.errors.full_messages_for(:min_weight).present?
+              .col-sm-0{style: 'margin-top: 35px;'}
+                = "～"
+              .col-sm-2
+                .field
+                  -# 動物の体長(最小)
+                  = f.label :max_weight, Animal.human_attribute_name("max_weight"), :class => 'control-label'
+                  = f.text_field :max_weight, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:max_weight)[0]}" if @animal.errors.full_messages_for(:max_weight).present?
+          %div{style:"padding: 10pt"}
+
+          .row
+          .col-sm-12
+            = f.label :distribution, "#{Animal.human_attribute_name("distribution")}(最大５地域記載可能)", :class => 'control-label'
+            .row
+              .col-sm-2
+                .field
+                  -# 動物の分布[1]
+                  = f.text_field :distribution_1, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:distribution_1)[0]}" if @animal.errors.full_messages_for(:distribution_1).present?
+              .col-sm-2
+                .field
+                  -# 動物の分布[2]
+                  = f.text_field :distribution_2, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:distribution_2)[0]}" if @animal.errors.full_messages_for(:distribution_2).present?
+              .col-sm-2
+                .field
+                  -# 動物の分布[3]
+                  = f.text_field :distribution_3, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:distribution_3)[0]}" if @animal.errors.full_messages_for(:distribution_3).present?
+              .col-sm-2
+                .field
+                  -# 動物の分布[4]
+                  = f.text_field :distribution_4, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:distribution_4)[0]}" if @animal.errors.full_messages_for(:distribution_4).present?
+              .col-sm-2
+                .field
+                  -# 動物の分布[5]
+                  = f.text_field :distribution_5, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:distribution_5)[0]}" if @animal.errors.full_messages_for(:distribution_5).present?
+                %div{style:"padding: 10pt"}
+
+          .row
+          .col-sm-12
+            = f.label :habitat, "#{Animal.human_attribute_name("habitat")}(最大５地域記載可能)", :class => 'control-label'
+            .row
+              .col-sm-2
+                .field
+                  -# 動物の生息地[1]
+                  = f.text_field :habitat_1, :class => 'form-control'
+                  .text-danger
+                    = "※#{@animal.errors.full_messages_for(:habitat_1)[0]}" if @animal.errors.full_messages_for(:habitat_1).present?
+              .col-sm-2
+                .field
+                  -# 動物の生息地[2]
+                  = f.text_field :habitat_2, :class => 'form-control'
+                .text-danger
+                  = "※#{@animal.errors.full_messages_for(:habitat_2)[0]}" if @animal.errors.full_messages_for(:habitat_2).present?
+              .col-sm-2
+                .field
+                  -# 動物の生息地[3]
+                  = f.text_field :habitat_3, :class => 'form-control'
+                .text-danger
+                  = "※#{@animal.errors.full_messages_for(:habitat_3)[0]}" if @animal.errors.full_messages_for(:habitat_3).present?
+              .col-sm-2
+                .field
+                  -# 動物の生息地[4]
+                  = f.text_field :habitat_4, :class => 'form-control'
+                .text-danger
+                  = "※#{@animal.errors.full_messages_for(:habitat_4)[0]}" if @animal.errors.full_messages_for(:habitat_4).present?
+              .col-sm-2
+                .field
+                  -# 動物の生息地[5]
+                  = f.text_field :habitat_5, :class => 'form-control'
+                .text-danger
+                  = "※#{@animal.errors.full_messages_for(:habitat_5)[0]}" if @animal.errors.full_messages_for(:habitat_5).present?
+
+          %div{style:"padding: 10pt"}
+          .row
+            .col-sm-3
+              .actions
+                = button_tag "登録", class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'
+

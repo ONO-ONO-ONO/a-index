@@ -3,12 +3,19 @@
 ja:
   activerecord:
     models:
+      account: アカウント
       animal: 動物
       animal_distribution: 分布
       animal_habitat: 生息地
       animal_image: 画像
       my_animal_book: My動物図鑑
+
     attributes:
+      account:
+        account_name: アカウント名
+        email: メールアドレス
+        role: 役職
+        password: パスワード
       animal:
         id: ID
         name: 名称
@@ -26,6 +33,20 @@ ja:
         min_weight: 体重(最小)
         max_weight: 体重(最大)
         red_list: レッドリスト
+        distribution: 分布
+        distribution_1: 分布1
+        distribution_2: 分布2
+        distribution_3: 分布3
+        distribution_4: 分布4
+        distribution_5: 分布5
+        habitat: 生息地
+        habitat_1: 生息地1
+        habitat_2: 生息地2
+        habitat_3: 生息地3
+        habitat_4: 生息地4
+        habitat_5: 生息地5
+      animal_image:
+        image: 画像
       my_animal_book:
         id: ID
         my_animal_name: 名称
@@ -35,11 +56,85 @@ ja:
         my_animal_image: 写真
         created_at: 登録日
     errors:
-      messages:
-        too_long: "は半角%{count}文字以内で入力してください。"
-        blank: "を入力してください。"
-        empty: "を入力してください。"
-        wrong_length: "は%{count}文字で入力してください。"
-        duplicate_dates: "が他のレコードと重複しています。"
-        greater_than_or_equal_to: "は%{count}以上の値にしてください。"
-        less_than: "は%{count}より小さい値にしてください。"
+      models:
+        animal:
+          attributes:
+            name:
+              format: '%{message}'
+              blank: は必ず入力してください
+              too_long: は%{count}文字以内で入力してください
+            binomial_name:
+              too_long: は%{count}文字以内で入力してください
+            classification:
+              too_long: は%{count}文字以内で入力してください
+            animal_class:
+              too_long: は%{count}文字以内で入力してください
+            animal_order:
+              too_long: は%{count}文字以内で入力してください
+            animal_family:
+              too_long: は%{count}文字以内で入力してください
+            animal_genus:
+              too_long: は%{count}文字以内で入力してください
+            animal_species:
+              too_long: は%{count}文字以内で入力してください
+            animal_sub_species:
+              too_long: は%{count}文字以内で入力してください
+            min_length:
+              too_long: は%{count}文字以内で入力してください
+              numericality: は数値で入力してください
+            max_length:
+              too_long: は%{count}文字以内で入力してください
+              numericality: は数値で入力してください
+            min_weight:
+              too_long: は%{count}文字以内で入力してください
+              numericality: は数値で入力してください
+            max_length:
+              too_long: は%{count}文字以内で入力してください
+              numericality: は数値で入力してください
+            red_list:
+              too_long: は%{count}文字以内で入力してください
+            distribution_1:
+              too_long: は%{count}文字以内で入力してください
+            distribution_2:
+              too_long: は%{count}文字以内で入力してください
+            distribution_3:
+              too_long: は%{count}文字以内で入力してください
+            distribution_4:
+              too_long: は%{count}文字以内で入力してください
+            distribution_5:
+              too_long: は%{count}文字以内で入力してください
+            habitat_1:
+              too_long: は%{count}文字以内で入力してください
+            habitat_2:
+              too_long: は%{count}文字以内で入力してください
+            habitat_3:
+              too_long: は%{count}文字以内で入力してください
+            habitat_4:
+              too_long: は%{count}文字以内で入力してください
+            habitat_5:
+              too_long: は%{count}文字以内で入力してください
+        animal_image:
+          attributes:
+            image: 
+              format: '%{message}'
+              blank: を必ず添付してから登録ボタンを押してください
+        my_animal_book:
+          attributes:
+            my_animal_name:
+              format: '%{message}'
+              blank: は必ず入力してください
+              too_long: は%{count}文字以内で入力してください
+            my_animal_place:
+              blank: は一応入力してください
+              too_long: は%{count}文字以内で入力してください
+            my_animal_image:
+              blank: は必ず添付してください
+        account:
+          attributes:
+            account_name:
+              format: '%{message}'
+              blank: は必ず入力してください
+              too_long: は%{count}文字以内で入力してください
+            email:
+              too_long: は%{count}文字以内で入力してください
+            

@@ -1,0 +1,36 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header E-Mail編集
+    .content
+      .row
+        .col-sm-10
+        .col-sm-2
+          = link_to '一覧に戻る', my_page_path, :class => 'pull-right btn btn-primary'
+      %br
+
+      -# = form_for(@account, url: my_page_update_path(@account), html: {method: "post"}) do |f|
+      = form_for(@account) do |f|
+        .row
+          .col-sm-2
+            = f.label :account_name, Account.human_attribute_name("account_name"), :class => 'control-label'
+          .col-sm-4
+            = f.text_field :account_name, :class => 'form-control'
+        %br
+        .row
+          .col-sm-2
+            = f.label :email, Account.human_attribute_name("email"), :class => 'control-label'
+          .col-sm-4
+            = f.text_field :email, :class => 'form-control'
+        %br
+        .row
+          .col-sm-2
+            = f.label :role, Account.human_attribute_name("role"), :class => 'control-label'
+          .col-sm-4
+            = f.select :role, @role, { selected: @account.role_name },class: 'form-control'
+        %br
+        .row
+          .col-sm-3
+            .actions
+              = button_tag "更新", class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'

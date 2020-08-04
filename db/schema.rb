@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_022504) do
+ActiveRecord::Schema.define(version: 2020_08_03_124007) do
+
+  create_table "account_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "account_id"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "account_name", default: "", null: false
@@ -23,13 +30,21 @@ ActiveRecord::Schema.define(version: 2020_03_26_022504) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
   create_table "animal_distributions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "animal_id"
-    t.string "distribution"
+    t.string "distribution_1"
+    t.string "distribution_2"
+    t.string "distribution_3"
+    t.string "distribution_4"
+    t.string "distribution_5"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -71,6 +86,16 @@ ActiveRecord::Schema.define(version: 2020_03_26_022504) do
     t.datetime "deleted_at"
     t.string "red_list"
     t.string "animal_sub_species"
+    t.string "distribution_1"
+    t.string "distribution_2"
+    t.string "distribution_3"
+    t.string "distribution_4"
+    t.string "distribution_5"
+    t.string "habitat_1"
+    t.string "habitat_2"
+    t.string "habitat_3"
+    t.string "habitat_4"
+    t.string "habitat_5"
   end
 
   create_table "my_animal_books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -86,6 +111,13 @@ ActiveRecord::Schema.define(version: 2020_03_26_022504) do
 
   create_table "old_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "id"
+  end
+
+  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "role_id"
+    t.string "role_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -56,6 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
   gem 'better_errors'     # 開発中のエラー画面をリッチにする
   gem 'binding_of_caller' # 開発中のエラー画面にさらに変数の値を表示する
+  gem 'letter_opener_web' # レターオープナー
 end
 
 # 追加gem
@@ -72,6 +73,5 @@ gem 'devise'
 gem "devise-i18n"
 gem 'cancancan'
 gem 'kaminari'
-
-
-
+gem 'file_validators'
+gem 'seed-fu'

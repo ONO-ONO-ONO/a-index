@@ -2,9 +2,14 @@
   .col-sm-10
   .col-sm-2
     = link_to '一覧に戻る', my_animal_books_path, :class => 'pull-right btn btn-primary'
+%div{style:"padding: 5pt"}
+
 .row
   .col-sm-12
-    = form_with(model: @my_animal, local: true) do |f|
+    -# = form_with(model: @my_animal, local: true) do |f|
+    = form_for(@my_animal) do |f|
+      = render 'layouts/error_messages', model: f.object
+
       .row
         .col-sm-5
           .field
@@ -12,6 +17,8 @@
             = f.label :my_animal_name, MyAnimalBook.human_attribute_name("my_animal_name"), :class => 'col-sm-4 control-label'
             .col-sm-12
               = f.text_field :my_animal_name, :class => 'form-control'
+              .text-danger
+                = "※#{@my_animal.errors.full_messages_for(:my_animal_name)[0]}" if @my_animal.errors.full_messages_for(:my_animal_name).present?
       %br
       .row
         .col-sm-5
@@ -20,6 +27,8 @@
             = f.label :my_animal_place, MyAnimalBook.human_attribute_name("my_animal_place"), :class => 'col-sm-4 control-label'
             .col-sm-12
               = f.text_field :my_animal_place, :class => 'form-control'
+              .text-danger
+                = "※#{@my_animal.errors.full_messages_for(:my_animal_place)[0]}" if @my_animal.errors.full_messages_for(:my_animal_place).present?
       %br
       .row
         .col-sm-5
@@ -36,13 +45,13 @@
             = f.label :my_animal_image, MyAnimalBook.human_attribute_name("my_animal_image"), :class => 'col-sm-4 control-label'
             .col-sm-12
               = f.file_field :my_animal_image, :class => 'form-control', :onChange => 'controlImageSubmitButton()'
+              .text-danger
+                = "※#{@my_animal.errors.full_messages_for(:my_animal_image)[0]}" if @my_animal.errors.full_messages_for(:my_animal_image).present?
           .field
-            = f.hidden_field :user_id, :value => @account_id
-
-
+            = f.hidden_field :user_id, :value => current_account.id
 
       %div{style:"padding: 10pt"}
       .row
         .col-sm-3
           .actions
-            = button_tag @save_button, class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'
+            = button_tag "登録", class: 'pull-right btn btn-primary', type: 'button', onclick: 'submit();'

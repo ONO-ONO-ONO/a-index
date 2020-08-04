@@ -1,0 +1,44 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header アカウント
+    %br
+    .row
+      .col-sm-10
+      .col-sm-2
+        = link_to '編集', my_page_edit_path, :class => 'btn btn-primary'
+      %br
+
+    .row
+      .col-sm-2
+        = "#{Account.human_attribute_name("account_name")}："
+      .col-sm-10
+        = @account.account_name
+    %br
+
+    .row
+      .col-sm-2
+        = "#{Account.human_attribute_name("role")}："
+      .col-sm-10
+        = @account.role_name
+    %br
+
+    .row
+      .col-sm-2
+        = "MY図鑑登録数："
+      .col-sm-10
+        = @account.my_animal_books_count
+    %br
+
+    .row.border-bottom
+    %br
+    
+    .row
+      .col-sm-2
+        = "#{Account.human_attribute_name("email")}："
+      .col-sm-8
+        = @account.email
+      .col-sm-2
+        = link_to 'アドレス編集', my_page_email_edit_path, :class => 'btn btn-primary'
+    
