@@ -101,7 +101,7 @@ class AnimalsController < ApplicationController
                                     )
   end
 
-  # [WIP] def role_admin , def role_admin_redirect どちらかを使用するか決める。どちらかを消す
+  # 権限管理
   def role_admin
     if account_signed_in?
       if current_account.role < 50
@@ -117,7 +117,7 @@ class AnimalsController < ApplicationController
 
   end
 
-
+  # [:new, :edit, :create, :update]に対応
   def role_admin_redirect
     if account_signed_in?
       if current_account.role < 50
