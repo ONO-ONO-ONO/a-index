@@ -14,6 +14,16 @@
 #  created_user       :integer
 #  deleted_at         :datetime
 #  detail             :text(65535)
+#  distribution_1     :string(255)
+#  distribution_2     :string(255)
+#  distribution_3     :string(255)
+#  distribution_4     :string(255)
+#  distribution_5     :string(255)
+#  habitat_1          :string(255)
+#  habitat_2          :string(255)
+#  habitat_3          :string(255)
+#  habitat_4          :string(255)
+#  habitat_5          :string(255)
 #  max_length         :float(24)
 #  max_weight         :float(24)
 #  min_length         :float(24)
@@ -25,12 +35,8 @@
 #  updated_at         :datetime         not null
 #
 class Animal < ApplicationRecord
-  has_one :animal_distribution, dependent: :destroy
-  has_one :animal_habitat,      dependent: :destroy
-  has_one :animal_image,        dependent: :destroy
-  accepts_nested_attributes_for :animal_distribution
-  accepts_nested_attributes_for :animal_habitat
-  accepts_nested_attributes_for :animal_image
+  has_many :animal_images,        dependent: :destroy
+  accepts_nested_attributes_for :animal_images, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :binomial_name, length: { maximum: 60 }
@@ -44,7 +50,17 @@ class Animal < ApplicationRecord
   validates :min_length, length: { maximum: 8 }, numericality: true, allow_blank: true
   validates :max_length, length: { maximum: 8 }, numericality: true, allow_blank: true
   validates :min_weight, length: { maximum: 8 }, numericality: true, allow_blank: true
-  validates :max_length, length: { maximum: 8 }, numericality: true, allow_blank: true
+  validates :max_weight, length: { maximum: 8 }, numericality: true, allow_blank: true
   validates :red_list, length: { maximum: 2 }
+  validates :distribution_1, length: { maximum: 15 }
+  validates :distribution_2, length: { maximum: 15 }
+  validates :distribution_3, length: { maximum: 15 }
+  validates :distribution_4, length: { maximum: 15 }
+  validates :distribution_5, length: { maximum: 15 }
+  validates :habitat_1, length: { maximum: 15 }
+  validates :habitat_2, length: { maximum: 15 }
+  validates :habitat_3, length: { maximum: 15 }
+  validates :habitat_4, length: { maximum: 15 }
+  validates :habitat_5, length: { maximum: 15 }
 
 end

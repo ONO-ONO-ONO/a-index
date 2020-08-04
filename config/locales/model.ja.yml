@@ -33,6 +33,20 @@ ja:
         min_weight: 体重(最小)
         max_weight: 体重(最大)
         red_list: レッドリスト
+        distribution: 分布
+        distribution_1: 分布1
+        distribution_2: 分布2
+        distribution_3: 分布3
+        distribution_4: 分布4
+        distribution_5: 分布5
+        habitat: 生息地
+        habitat_1: 生息地1
+        habitat_2: 生息地2
+        habitat_3: 生息地3
+        habitat_4: 生息地4
+        habitat_5: 生息地5
+      animal_image:
+        image: 画像
       my_animal_book:
         id: ID
         my_animal_name: 名称
@@ -79,6 +93,31 @@ ja:
               numericality: は数値で入力してください
             red_list:
               too_long: は%{count}文字以内で入力してください
+            distribution_1:
+              too_long: は%{count}文字以内で入力してください
+            distribution_2:
+              too_long: は%{count}文字以内で入力してください
+            distribution_3:
+              too_long: は%{count}文字以内で入力してください
+            distribution_4:
+              too_long: は%{count}文字以内で入力してください
+            distribution_5:
+              too_long: は%{count}文字以内で入力してください
+            habitat_1:
+              too_long: は%{count}文字以内で入力してください
+            habitat_2:
+              too_long: は%{count}文字以内で入力してください
+            habitat_3:
+              too_long: は%{count}文字以内で入力してください
+            habitat_4:
+              too_long: は%{count}文字以内で入力してください
+            habitat_5:
+              too_long: は%{count}文字以内で入力してください
+        animal_image:
+          attributes:
+            image: 
+              format: '%{message}'
+              blank: を必ず添付してから登録ボタンを押してください
         my_animal_book:
           attributes:
             my_animal_name:
@@ -86,9 +125,10 @@ ja:
               blank: は必ず入力してください
               too_long: は%{count}文字以内で入力してください
             my_animal_place:
+              blank: は一応入力してください
               too_long: は%{count}文字以内で入力してください
             my_animal_image:
-              blank: は必ず乗せてください。
+              blank: は必ず添付してください
         account:
           attributes:
             account_name:

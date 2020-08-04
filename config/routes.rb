@@ -45,6 +45,8 @@
 
 Rails.application.routes.draw do
   devise_for :accounts
+  
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   get "home/" => "home#top"
   get "home/explanation" => "home#explanation"
@@ -60,6 +62,7 @@ Rails.application.routes.draw do
 
   get "my_page/" => "my_page#index"
   get "my_page/edit" => "my_page#edit"
+  get "my_page/email_edit" => "my_page#email_edit"
   post "my_page/update" => "my_page#update"
   post "my_page/account_image_upload" => "my_page#account_image_upload"
   get "my_page/remove_image" => "my_page#remove_image"

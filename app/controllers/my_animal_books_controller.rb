@@ -19,40 +19,29 @@ class MyAnimalBooksController < ApplicationController
   end
 
   def edit
-    @save_button = "更新"
   end
 
   def create
     @my_animal = MyAnimalBook.new(my_animal_params)
-
-    if @my_animal.valid?
-      @my_animal.user_id = current_account.id
-      @my_animal.save
+    @my_animal.user_id = current_account.id
+    if @my_animal.save
       redirect_to @my_animal, notice: '作成しました。'
-    else
-      my_animal_alert = @my_animal
-      @my_animal = MyAnimalBook.new(my_animal_params) #newで入力した値を代入
-      flash.now[:alert] = my_animal_alert.errors.full_messages.first
-      # redirect_to ({controller: 'my_animal_books', action: 'new'}), alert: my_animal_alert.errors.full_messages.first
+    else 
       render 'new'
     end
+
   end
 
   def update
-    @my_animal = MyAnimalBook.new(my_animal_params)
-
-    if @my_animal.valid?
-      @my_animal.user_id = current_account.id
-      @animal.update(animal_params)
-      redirect_to @my_animal, notice: '作成しました。'
+    @my_animal = MyAnimalBook.find(params[:id])
+    if @my_animal.update(my_animal_params)
+      redirect_to @my_animal, notice: '更新しました。'
     else
-      my_animal_alert = @my_animal
-      @my_animal = MyAnimalBook.new(my_animal_params) #newで入力した値を代入
-      flash.now[:alert] = my_animal_alert.errors.full_messages.first
-      render 'new'
+      render 'edit'
     end
   end
 
+  
   private
   def set_my_animal
     @my_animal = MyAnimalBook.find(params[:id])
@@ -60,11 +49,11 @@ class MyAnimalBooksController < ApplicationController
 
   def my_animal_params
     params.require(:my_animal_book).permit(:user_id,
-                                      :my_animal_name,
-                                      :my_animal_place,
-                                      :my_animal_detail,
-                                      :check,
-                                      :my_animal_image
-                                      )
+                                           :my_animal_name,
+                                           :my_animal_place,
+                                           :my_animal_detail,
+                                           :check,
+                                           :my_animal_image
+                                           )
     end
 end

@@ -2,9 +2,6 @@ class MyPageController < ApplicationController
 
   def index
     @account = current_account
-    @account_role = Role.find_by(role_id: @account.role)
-    @account_images = AccountImage.where(account_id: @account.id)
-    @my_animal_books_count = MyAnimalBook.where(user_id: @account.id).count
   end
 
   def edit
@@ -13,6 +10,9 @@ class MyPageController < ApplicationController
     @account_images = AccountImage.where(account_id: @account.id)
 
     @role = Role.pluck(:role_name)
+  end
+
+  def email_edit
   end
 
   def update
