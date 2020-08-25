@@ -27,7 +27,7 @@
 /config/master.key
 
 # Ignore database settings
-/config/database.yml
+# /config/database.yml
 
 #.gitignore 追加部分 =============================
 /vendor/bundle
