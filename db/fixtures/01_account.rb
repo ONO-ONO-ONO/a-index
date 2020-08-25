@@ -21,6 +21,6 @@ Account.seed do |s|
   s.account_name = '会員太郎'
   s.email = 'kaiin@gmail.com'
   s.password = 1234567890
-  s.role = 0
+  s.role = 10
   
 end

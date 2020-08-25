@@ -129,4 +129,5 @@ class AnimalsController < ApplicationController
       redirect_to ({controller: 'animals', action: 'index'}),alert: 'アクセス権限がありません'
     end
   end
+  
 end
