@@ -29,12 +29,12 @@
           %a.top_menu-1.p-2.text-dark.align-middle{:href => animals_path} 動物図鑑
           %a.top_menu-2.p-2.text-dark.align-middle{:href => my_animal_books_path} ＭＹ図鑑
           %a.top_menu-3.p-2.text-dark.align-middle{:href => my_page_path} アカウント
-          %a.top_menu-4.p-2.text-dark.align-middle{:href => home_path } ＴＯＰ
+          %a.top_menu-4.p-2.text-dark.align-middle{:href => root_path } ＴＯＰ
           = link_to "ログアウト", destroy_account_session_path, :method => :delete, :class => 'btn btn-outline-primary'
 
         - unless account_signed_in?
           %a.top_menu-1.p-2.text-dark.align-middle{:href => animals_path} 動物図鑑
-          %a.top_menu-4.p-2.text-dark.align-middle{:href => "home#top" } ＴＯＰ
+          %a.top_menu-4.p-2.text-dark.align-middle{:href => root_path } ＴＯＰ
           %a.btn.btn-outline-primary{:href => account_session_path} ログイン
           %a.btn.btn-primary{:href => new_account_registration_path} アカウント作成
 

@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  get "/" => "home#top"
+  root to: "home#top"
   get "home/explanation" => "home#explanation"
 
   resources :animals do
