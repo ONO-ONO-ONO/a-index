@@ -214,7 +214,7 @@
                 - @edit_animal_images.each do |edit_image|
                   - if count % 3 == 0
                     %br
-                  = image_tag edit_image.image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: '300x225'
+                  = image_tag asset_path(edit_image.image_url), :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: '300x225'
                   = link_to '✖',remove_image_animals_path(edit_image.id), data: { confirm: '本当に削除しますか？' }, class: 'col-xs-1'
                   - count += 1
                 %div{style:"padding: 5pt"}

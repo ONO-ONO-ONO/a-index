@@ -30,7 +30,7 @@
                   .col-sm-3
                     .caption.text-center
                       .thumbnail{style: "height:250px;"}
-                        = image_tag my_animal.my_animal_image_url,:style => 'height:150px;'
+                        = image_tag asset_path(my_animal.my_animal_image_url),:style => 'height:150px;'
                         %div
                           =my_animal.my_animal_name
                         %div

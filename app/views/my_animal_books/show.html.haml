@@ -27,4 +27,4 @@
 
         .col-sm-6
           %br
-          = image_tag @my_animal.my_animal_image_url, :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: '600x450'
+          = image_tag asset_path(@my_animal.my_animal_image_url), :class => 'col-xs-3',  alt: '参照先に画像が無いよ！', size: '600x450'
