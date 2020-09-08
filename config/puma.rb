@@ -36,10 +36,10 @@ plugin :tmp_restart
 # Local環境の場合は、bind ~ が走らないように設定
 rails_env = ENV.fetch("RAILS_ENV")
 if rails_env == "production"
-  bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+  # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 
   rails_root = Dir.pwd
-  bind "unix://" + File.join(rails_root, 'tmp', 'sockets', 'puma.sock')
+  bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
   pidfile File.join(rails_root, 'tmp', 'pids', 'puma.pid')
   state_path File.join(rails_root, 'tmp', 'pids', 'puma.state')
   stdout_redirect(
