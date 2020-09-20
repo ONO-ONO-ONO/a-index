@@ -7,7 +7,10 @@
     %br
 
     .card.border-dark.mb-3
-      .card-header お知らせ
+      .card-header 
+        お知らせ
+        %span.q_tooltip{"data-toggle" => "tooltip", "data-html" => "true", :title => "過去5件までの動物図鑑新規追加情報を掲載" }
+          %i.fa{"aria-hidden" => "true", :class => "fa-question-circle"}
       .card-body.text-dark
         - @created_animals.each do |created_animal|
           %p.card-text

@@ -15,4 +15,11 @@
  *= require_self
  */
  @import "bootstrap";
- 
+ @import "font-awesome";
+
+ /* tooltipを全て左揃えに修正 */
+ .tooltip-inner{
+    max-width: 100%;
+    text-align:left;
+  }
+  
