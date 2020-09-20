@@ -2,6 +2,7 @@ class AnimalsController < ApplicationController
   before_action :set_animal, only: [:show, :edit, :update]
   before_action :role_admin
   before_action :role_admin_redirect, only: [:new, :edit, :create, :update]
+  before_action :set_redlist, only: [:edit, :new]
 
   def index
     # Ransack用意
