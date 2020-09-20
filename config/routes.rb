@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
   root to: "home#top"
   get "home/explanation" => "home#explanation"
+  get "home/privacy" => "home#privacy"
+  get "home/terms_of_service" => "home#terms_of_service"
 
   resources :animals do
     collection do
