@@ -85,6 +85,12 @@
                   = f.text_field :animal_sub_species, :class => 'form-control'
                   .text-danger
                     = "※#{@animal.errors.full_messages_for(:animal_sub_species)[0]}" if @animal.errors.full_messages_for(:animal_sub_species).present?
+            .col-sm-3
+              .field
+                -# レッドリスト
+                = f.label :red_list, Animal.human_attribute_name("red_list"), :class => 'col-sm-6 control-label'
+                .col-sm-12
+                  = f.collection_select :red_list, Redlist.all, :red_list_name, :red_list_name, { include_blank: "<<--select-->>" }, class: "browser-default custom-select"
           %div{style:"padding: 10pt"}
             
           .row

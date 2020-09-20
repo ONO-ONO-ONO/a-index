@@ -97,6 +97,7 @@ class AnimalsController < ApplicationController
                                    :habitat_3,
                                    :habitat_4,
                                    :habitat_5,
+                                   :red_list,
                                    animal_image_attributes:[:id, :image]
                                     )
   end
