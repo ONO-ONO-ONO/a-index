@@ -40,8 +40,4 @@ $(function(){
   },function(){
   $('.top_menu-4').css('font-weight','normal');
   });
-
-  $(".q_tooltip").tooltip({
-    placement : 'top'
-  });
 });
