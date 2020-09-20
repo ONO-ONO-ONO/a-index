@@ -20,8 +20,6 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-
-  %body
     .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
       %h5.my-0.mr-md-auto.font-weight-normal AnimaIndex
       %nav.my-2.my-md-0.mr-md-3
@@ -37,6 +35,7 @@
           %a.top_menu-4.p-2.text-dark.align-middle{:href => root_path } ＴＯＰ
           %a.btn.btn-outline-primary{:href => account_session_path} ログイン
           %a.btn.btn-primary{:href => new_account_registration_path} アカウント作成
+  %body
 
     .col-sm-12
       - if alert
@@ -45,3 +44,27 @@
         .alert.alert-info= notice
 
     = yield
+
+    -if controller.action_name != "top" # TOP画面以外の場合はbodyとfooterの間に一行改行を挟む
+      %br
+
+
+  %footer
+    .row
+    .col-sm-1
+    .col-sm-10
+      %br
+      %h4
+        AnimaIndex
+      %br
+      %nav.my-2.my-md-0.mr-md-3
+        %a.top_menu-1.p-2.text-white.align-middle{:href => home_terms_of_service_path} 利用規約
+        %a.top_menu-2.p-2.text-white.align-middle{:href => home_privacy_path} プライバシーポリシー
+      %br
+      %br
+
+  :css
+    footer{
+            background-color: #001e43;
+            color: white;
+          }
