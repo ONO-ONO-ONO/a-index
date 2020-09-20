@@ -9,8 +9,14 @@
           = link_to '一覧に戻る', animals_path, :class => 'pull-right btn btn-primary'
       .row
         .col-sm-6
+          .row.text-muted
+            .col-sm-5
+              = "投稿者：#{Account.find(@animal.created_user).account_name}"
+            .col-sm-5
+              = "最終更新者：#{Account.find(@animal.updated_user).account_name}"
+          %br
           .col-sm-12
-            = link_to '編集', edit_animal_path(@animal.id), :class => 'btn btn-sm btn-info center-block' if @admin_view_display
+            = link_to '編集', edit_animal_path(@animal.id), :class => 'btn btn-info center-block' if @admin_view_display
           %br
 
           .col-sm-12
@@ -49,6 +55,8 @@
           　
           .col-sm-12
             = "#{Animal.human_attribute_name("red_list")}：#{@animal.red_list}"
+            -# %span.user_tooltip{"data-container" => "body", "data-html" => "true", "data-placement" => "right", "data-toggle" => "tooltip", :title => "aaa"}
+            -#   = "(？)"
 
         .col-sm-6
           - if @animal_images.present?
