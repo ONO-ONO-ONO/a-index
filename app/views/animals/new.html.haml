@@ -89,10 +89,8 @@
               .field
                 -# レッドリスト
                 = f.label :red_list, Animal.human_attribute_name("red_list"), :class => 'col-sm-6 control-label'
-                %span.q_tooltip{"data-toggle" => "tooltip", "data-html" => "true", :title => @redlist_guide }
-                  %i.fa{"aria-hidden" => "true", :class => "fa-question-circle"}
                 .col-sm-12
-                  = f.collection_select :red_list, Redlist.all, :id, :red_list_name, { include_blank: "==未選択==" }, class: "browser-default custom-select"
+                  = f.collection_select :red_list, Redlist.all, :red_list_name, :red_list_name, { include_blank: "<<--select-->>" }, class: "browser-default custom-select"
           %div{style:"padding: 10pt"}
             
           .row
