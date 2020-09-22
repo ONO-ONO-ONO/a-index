@@ -1,0 +1,1 @@
+validates_presence_of   :email, :if => :email_required?
