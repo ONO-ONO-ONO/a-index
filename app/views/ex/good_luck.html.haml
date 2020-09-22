@@ -1,0 +1,25 @@
+.row
+  .col-sm-12.text-center
+    %h2 アカウントを仮作成しました！
+    %br
+    %h4 まだ完了していません。
+    %h4 認証メールを登録アドレスに送りました。
+    %br
+    %h4 以下フォームに認証メールに添付した4桁のコードを2時間以内に入力してください。
+    %br
+    %h5 届いていない場合は、迷惑メールフォルダもご確認ください。
+    %br
+.row
+  .col-sm-4
+  .col-sm-4
+    = form_for(@account, as: :accounts, url: ex_on_timepass_path) do |f|
+      - if @error_message.present?
+        .alert.alert-danger 
+          = @error_message
+      = f.text_field :random_timepass, value: "", autofocus: true, autocomplete: "random_timepass", :class => 'form-control'
+      = f.hidden_field :email, value: @account.email
+      %br
+      .actions.text-center
+        = f.submit "一般会員で始める", :class => 'btn btn-primary center-block'
+      %br
+      %br

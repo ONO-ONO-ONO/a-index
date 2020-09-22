@@ -48,6 +48,11 @@ Rails.application.routes.draw do
     :registrations => 'accounts/registrations',
     :sessions => 'accounts/sessions',
   }
+
+  get "ex/ex_sign_in" => "ex#ex_sign_in"
+  post "ex/ex_create" => "ex#ex_create"
+  get "ex/good_luck" => "ex#good_luck"
+  patch "ex/on_timepass" => "ex#on_timepass"
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 

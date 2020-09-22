@@ -1,4 +1,5 @@
 class MyPageController < ApplicationController
+  before_action :ex_temporary_registration
 
   def index
     @account = current_account
