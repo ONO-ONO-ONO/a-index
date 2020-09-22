@@ -10,11 +10,6 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    # @account = Account.new(account_params)
-    # a
-    # sign_in resource
-
-
     @account = Account.new(account_params)
     if @account.save
       sign_in @account
@@ -49,7 +44,6 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   # end
 
   def detail
-    a
     @account = Account.find_by(id: params[:id])
   end
 

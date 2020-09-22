@@ -1,4 +1,5 @@
 class AnimalsController < ApplicationController
+  before_action :ex_temporary_registration
   before_action :set_animal, only: [:show, :edit, :update]
   before_action :role_admin
   before_action :role_admin_redirect, only: [:new, :edit, :create, :update]
@@ -105,9 +106,9 @@ class AnimalsController < ApplicationController
   # 権限管理
   def role_admin
     if account_signed_in?
-      if current_account.role < 50
+      if current_account.role < 49
         @admin_view_display = false
-      elsif current_account.role >= 90
+      elsif current_account.role <= 90
         @admin_view_display = true
       end
     end
@@ -121,7 +122,7 @@ class AnimalsController < ApplicationController
   # [:new, :edit, :create, :update]に対応
   def role_admin_redirect
     if account_signed_in?
-      if current_account.role < 50
+      if current_account.role < 49
         redirect_to ({controller: 'animals', action: 'index'}),alert: 'アクセス権限がありません'
       end
     end
