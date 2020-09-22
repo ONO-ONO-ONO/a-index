@@ -24,6 +24,16 @@
           %br
           .col-sm-12
             = "#{MyAnimalBook.human_attribute_name("my_animal_detail")}：#{@my_animal.my_animal_detail}"
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br          
+          .col-sm-2
+            = link_to '削除', @my_animal, :method => :delete, :data => { :confirm => '本当に削除しますか？' }, :class => 'pull-right btn btn-danger'
 
         .col-sm-6
           %br

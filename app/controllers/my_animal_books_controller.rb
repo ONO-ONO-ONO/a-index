@@ -42,7 +42,13 @@ class MyAnimalBooksController < ApplicationController
     end
   end
 
-  
+  def destroy
+    @my_animal = MyAnimalBook.find(params[:id])
+    @my_animal.destroy
+    redirect_to my_animal_books_path, notice: '削除しました。'
+
+  end
+
   private
   def set_my_animal
     @my_animal = MyAnimalBook.find(params[:id])
