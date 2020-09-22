@@ -5,14 +5,24 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    # @account = Account.new(account_params)
+    # a
+    # sign_in resource
+
+
+    @account = Account.new(account_params)
+    if @account.save
+      sign_in @account
+      redirect_to root_path, notice: '作成しました。AnimaIndexにようこそ！'
+    else 
+      render 'new'
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -39,6 +49,7 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   # end
 
   def detail
+    a
     @account = Account.find_by(id: params[:id])
   end
 
@@ -63,5 +74,14 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def account_params
+    params.require(:account).permit(:email,
+                                   :account_name,
+                                   :password,
+                                   :password_confirmation
+                                    )
+  end
 
 end

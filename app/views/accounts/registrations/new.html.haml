@@ -1,31 +1,65 @@
 .row
-  .col-sm-1
-  .col-sm-3.container
+  .col-sm-12.text-center
     %h2 アカウントを作成
     %br
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = render "devise/shared/error_messages", resource: resource
-      .field
-        = f.label "メールアドレス"
-        %br/
-        = f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control'
-      %br
-      -# .field
-      -#   = f.label "アカウント名"
-      -#   %br/
-      -#   = f.text_field :account_name, autofocus: true, autocomplete: "account_name", :class => 'form-control'
-      -# %br
-      .field
-        = f.label "パスワード(６文字以上)"
-        %br/
-        = f.password_field :password, autocomplete: "new-password", :class => 'form-control'
-      %br
-      .field
-        = f.label "パスワード(再入力)"
-        %br/
-        = f.password_field :password_confirmation, autocomplete: "new-password", :class => 'form-control'
-      %br
-      .actions
-        = f.submit "作成する", :class => 'btn btn-primary center-block'
-    = render "accounts/shared/links"
+.row
+  .col-sm-1
+  .col-sm-5
+    .card.bg-light.mb-3.img-thumbnail.card.border-primary.mb-3
+      .card-body.px-2.py-3
+        %h4.card-title.text-center.font-weight-bold 自分専用の動物図鑑のみを作る！
+        %br
+        %p.card-text.font-weight-bold 一般会員登録
+        %p.card-text.font-weight-bold ・自分専用の動物図鑑を作成、編集することが出来ます。<br>・メールアドレスの登録は必要ありません。
+        %p.mb-0
+        - @account = Account.new if @account == nil
+        - resource = Account.new if resource == nil
+        - resource.account_name = params["account"]["account_name"] unless params["account"] == nil
+
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          - if @account.errors.full_messages.present?
+            .alert.alert-danger 入力に不備があります
+          - else
+            %br
+          .field
+            = f.label "アカウント名(10文字以内)"
+            %br
+            = f.text_field :account_name, autofocus: true, autocomplete: "account_name", :class => 'form-control'
+            .text-danger
+              = "※#{@account.errors.full_messages_for(:account_name)[0]}" if @account.errors.full_messages_for(:account_name).present?
+          %br
+          .field
+            = f.label "パスワード(6文字以上)"
+            %br
+            = f.password_field :password, autocomplete: "new-password", :class => 'form-control'
+            .text-danger
+              = "※#{@account.errors.full_messages_for(:password)[0]}" if @account.errors.full_messages_for(:password).present?
+          %br
+          .field
+            = f.label "パスワード(再入力)"
+            %br
+            = f.password_field :password_confirmation, autocomplete: "new-password", :class => 'form-control'
+            .text-danger
+              = "※#{@account.errors.full_messages_for(:password_confirmation)[0]}" if @account.errors.full_messages_for(:password_confirmation).present?
+          %br
+          = f.hidden_field :email, value: nil
+
+          .actions.text-center
+            = f.submit "一般会員で始める", :class => 'btn btn-primary center-block'
+          
+  .col-sm-5
+    .card.bg-light.mb-3.img-thumbnail.card.border-warning.mb-3
+      .card-body.px-2.py-3
+        %h4.card-title.text-center.font-weight-bold AnimaIndex(本サイト)の動物図鑑を作る！
+        %br
+        %p.card-text.font-weight-bold Anima隊員登録
+        %p.card-text.font-weight-bold ・自分専用の動物図鑑を作成、編集することが出来ます。<br>・本サイトの動物図鑑を作成、編集することが出来ます。<br>・メールアドレスの登録が必要になります。
+        %p.mb-0
+        %br
+        - resource = Account.new if resource == nil
+        - resource.account_name = params["account"]["email"] unless params["account"] == nil
+        - resource.account_name = params["account"]["account_name"] unless params["account"] == nil
+
+        %a.btn.btn-primary{:href => root_path} Anima隊員として登録する
+
 
