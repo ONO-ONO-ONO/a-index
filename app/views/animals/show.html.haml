@@ -54,9 +54,8 @@
             = "、#{@animal.habitat_5}" if @animal.habitat_5.present?
           　
           .col-sm-12
-            = "#{Animal.human_attribute_name("red_list")}：#{@animal.red_list}"
-            -# %span.user_tooltip{"data-container" => "body", "data-html" => "true", "data-placement" => "right", "data-toggle" => "tooltip", :title => "aaa"}
-            -#   = "(？)"
+            = "#{Animal.human_attribute_name("red_list")}：#{Redlist.find(@animal.red_list).red_list_name}（#{Redlist.find(@animal.red_list).red_list_details}）"
+
 
         .col-sm-6
           - if @animal_images.present?
