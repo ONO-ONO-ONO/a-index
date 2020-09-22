@@ -42,7 +42,7 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   # ユーザー認証時に使用するキーの設定。
   # :email、:username、:subdomainが設定できる。
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:account_name]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the

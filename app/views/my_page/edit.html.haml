@@ -11,23 +11,13 @@
       %br
 
       = form_for(@account, url: my_page_update_path(@account), html: {method: "post"}) do |f|
+        = render 'layouts/error_messages', model: f.object
         .row
           .col-sm-2
             = f.label :account_name, Account.human_attribute_name("account_name"), :class => 'control-label'
           .col-sm-4
             = f.text_field :account_name, :class => 'form-control'
         %br
-        .row
-          .col-sm-2
-            = f.label :email, Account.human_attribute_name("email"), :class => 'control-label'
-          .col-sm-4
-            = f.text_field :email, :class => 'form-control'
-        %br
-        .row
-          .col-sm-2
-            = f.label :role, Account.human_attribute_name("role"), :class => 'control-label'
-          .col-sm-4
-            = f.select :role, @role, { selected: @account.role_name },class: 'form-control'
         %br
         .row
           .col-sm-3

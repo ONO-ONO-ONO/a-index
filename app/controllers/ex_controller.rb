@@ -29,7 +29,6 @@ class ExController < ApplicationController
     if @account.created_at + 7200 <= Time.now
       @account.destroy
       redirect_to root_path, alert: '認証コードを発行してから2時間が経過した為、仮作成したアカウントを削除しました'
-
     end
   end
 
@@ -37,15 +36,52 @@ class ExController < ApplicationController
     @account = Account.find_by(email: ex_params["email"])
 
     if @account.random_timepass == ex_params["random_timepass"]
-      @account.update(role: 50, ex_temporary_registration: false, random_timepass: "")
-      # sign_in @account
+      @account.update(role: 50, ex_status: true, ex_temporary_registration: false, random_timepass: "")
       redirect_to root_path, notice: '作成しました。AnimaIndexにようこそ！'
     else
       @error_message = "認証コードが異なります"
       render 'good_luck'
     end
+  end
 
+  def ex_lank_up
+  end
 
+  def ex_update
+    @account = current_account
+    if ex_params["email"].present? && @account.update(email: ex_params["email"])
+      @account.update(random_timepass: SecureRandom.base64(3))
+      NewAccountMailer.send_message_to_account(@account).deliver_now
+      redirect_to my_page_path, notice: 'メールアドレス入力を確認しました。認証メールをお送りします'
+    else
+      @error_message = "アドレスを入力してください" if ex_params["email"].blank?
+      render 'ex_lank_up'
+    end
+  end
+
+  def update_on_timepass
+    @account = current_account
+
+    if @account.random_timepass == ex_params["random_timepass"]
+      @account.update(role: 50, ex_status: true, random_timepass: "")
+      redirect_to root_path, notice: '作成しました。新たなAnimaIndexにようこそ！'
+    else
+      @error_message = "認証コードが異なります"
+      redirect_to my_page_path, alert: '認証コードが異なります'
+    end
+  end
+
+  def email_edit
+  end
+
+  def email_update
+    @account = current_account
+    if ex_params["email"].present? && @account.update(email: ex_params["email"])
+      redirect_to my_page_path, notice: 'メールアドレスを更新しました'
+    else
+      @error_message = "アドレスを入力してください" if ex_params["email"].blank?
+      render 'email_edit'
+    end
   end
 
   private

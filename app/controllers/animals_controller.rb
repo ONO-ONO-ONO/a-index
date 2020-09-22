@@ -43,7 +43,6 @@ class AnimalsController < ApplicationController
 
   def update
     @animal = Animal.find(params[:id])
-    @animal.created_user = current_account.id
     @animal.updated_user = current_account.id
     if @animal.update(animal_params)
       redirect_to @animal, notice: '作成しました。'

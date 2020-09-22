@@ -3,8 +3,14 @@ class NewAccountMailer < ApplicationMailer
 
   def send_message_to_account(account)
     @account = account
-    mail to: @account.email,
-         subject: "AnimaIndexアカウント登録認証メール"    
+    if @account.ex_temporary_registration
+      mail to: @account.email,
+          subject: "AnimaIndexアカウント登録認証メール" 
+    else
+      mail to: @account.email,
+          subject: "Anima隊員へのアップグレード認証メール" 
+    end
+    
   end
 
 end
