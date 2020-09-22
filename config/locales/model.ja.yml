@@ -16,6 +16,7 @@ ja:
         email: メールアドレス
         role: 役職
         password: パスワード
+        password_confirmation: パスワード(再入力)
       animal:
         id: ID
         name: 名称

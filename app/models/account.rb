@@ -37,8 +37,12 @@ class Account < ApplicationRecord
         #  :confirmable
 
   # 一時的にaccount_nameのバリテーションをオフにする。devise回りを修正出来たら復活
-  # validates :account_name, presence: true, length: { maximum: 10 }
-  validates :email, presence: true, length: { maximum: 30 }
+  validates :account_name, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :email, length: { maximum: 30 }
+
+  def email_required?
+    !email.blank? && super
+  end
 
   # 役職名を取得
   def role_name
