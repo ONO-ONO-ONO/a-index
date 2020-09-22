@@ -19,14 +19,10 @@ class MyPageController < ApplicationController
   def update
     @account = current_account
 
-    #選択肢の項目に合ったrole_idを取得する
-    role = Role.find_by(role_name: params[:account][:role])
-    params[:account][:role] = role.role_id
-
     if @account.update(account_params)
       redirect_to my_page_path, notice: '更新しました'
     else
-      render :edit
+      render 'edit'
     end
   end
 

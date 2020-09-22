@@ -5,19 +5,21 @@
     %br
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field
-        = f.label "メールアドレス"
-        %br/
-        = f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control'
+        = f.label "アカウント名"
+        %br
+        = f.text_field :account_name, autofocus: true, autocomplete: "account_name", :class => 'form-control'
       %br
       .field
         = f.label "パスワード"
-        %br/
+        %br
         = f.password_field :password, autocomplete: "current-password", :class => 'form-control'
       - if devise_mapping.rememberable?
         .field
           = f.check_box :remember_me
           = f.label :remember_me
+      %br
       .actions
         = f.submit "ログイン", :class => 'btn btn-primary center-block'
+      %br
     = render "accounts/shared/links"
 

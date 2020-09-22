@@ -53,6 +53,11 @@ Rails.application.routes.draw do
   post "ex/ex_create" => "ex#ex_create"
   get "ex/good_luck" => "ex#good_luck"
   patch "ex/on_timepass" => "ex#on_timepass"
+  get "ex/ex_lank_up" => "ex#ex_lank_up"
+  patch "ex/ex_update" => "ex#ex_update"
+  patch "ex/update_on_timepass" => "ex#update_on_timepass"
+  get "ex/email_edit" => "ex#email_edit"
+  patch "ex/email_update" => "ex#email_update"
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
