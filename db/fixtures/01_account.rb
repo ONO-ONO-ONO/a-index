@@ -4,6 +4,7 @@ Account.seed do |s|
   s.email = 'hakase@gmail.com'
   s.password = 1234567890
   s.role = 99
+  s.ex_status = 0
   
 end
 
@@ -13,6 +14,7 @@ Account.seed do |s|
   s.email = 'ippan@gmail.com'
   s.password = 1234567890
   s.role = 0
+  s.ex_status = 1
   
 end
 
@@ -22,5 +24,6 @@ Account.seed do |s|
   s.email = 'kaiin@gmail.com'
   s.password = 1234567890
   s.role = 50
+  s.ex_status = 1
   
 end

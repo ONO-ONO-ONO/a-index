@@ -109,7 +109,7 @@ class AnimalsController < ApplicationController
     if account_signed_in?
       if current_account.role < 49
         @admin_view_display = false
-      elsif current_account.role <= 90
+      elsif current_account.role <= 99
         @admin_view_display = true
       end
     end
