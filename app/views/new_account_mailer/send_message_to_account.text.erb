@@ -1,9 +1,7 @@
 <%= @account.account_name %> さま
 
-Animalndexのご登録、ありがとうございます。
-
+<%= "Animalndexのご登録、ありがとうございます。" if @account.ex_temporary_registration %>
+<%= "Anima隊員へのアップグレード、ありがとうございます。" unless @account.ex_temporary_registration %>
 下記認証コードを入力し、アカウント作成を完了させてください。
 
 <%= @account.random_timepass %>
-
-  

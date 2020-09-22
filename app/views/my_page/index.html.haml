@@ -34,11 +34,39 @@
     .row.border-bottom
     %br
     
-    .row
-      .col-sm-2
-        = "#{Account.human_attribute_name("email")}："
-      .col-sm-8
-        = @account.email
-      .col-sm-2
-        = link_to 'アドレス編集', my_page_email_edit_path, :class => 'btn btn-primary'
-    
+    - if current_account.ex_status
+      .row
+        .col-sm-2
+          = "#{Account.human_attribute_name("email")}："
+        .col-sm-8
+          = @account.email
+        .col-sm-2
+          = link_to 'アドレス編集', ex_email_edit_path, :class => 'btn btn-primary'
+        %br
+        %br
+
+    - elsif current_account.random_timepass.present?
+      .row
+        .col-sm-12
+          %h4 認証コード入力フォーム
+          %br
+          %h6 メールアドレスを仮作成しました。まだ完了していません。
+          %h6 認証メールを登録アドレスに送りました。以下フォームに認証メールに添付した4桁のコードを2時間以内に入力してください。
+          %br
+          .col-sm-4
+            = form_for(@account, as: :accounts, url: ex_update_on_timepass_path) do |f|
+              - if @error_message.present?
+                .alert.alert-danger 
+                  = @error_message
+              = f.text_field :random_timepass, value: "", autofocus: true, autocomplete: "random_timepass", :class => 'form-control'
+              = f.hidden_field :email, value: @account.email
+              %br
+              .actions.text-center
+                = f.submit "認証コードを送る", :class => 'btn btn-primary center-block'
+
+    - else
+      .col-sm-12.text-center
+        = "AnimaIndex(本サイト)の動物図鑑を作成、編集したい場合は以下からどうぞ"
+      %br
+      .col-sm-12.text-center
+        = link_to '一般会員からAnima隊員にランクアップする', ex_ex_lank_up_path, :class => 'btn btn-primary'
