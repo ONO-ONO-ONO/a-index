@@ -17,6 +17,7 @@ ja:
         role: 役職
         password: パスワード
         password_confirmation: パスワード(再入力)
+        current_password: 現在のパスワード
       animal:
         id: ID
         name: 名称
