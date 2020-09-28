@@ -25,9 +25,13 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if params[:account][:password].blank?
+      params[:account][:password] = "null"
+      params[:account][:password_confirmation] = "null"
+    end
+    super
+  end
 
   # DELETE /resource
   # def destroy

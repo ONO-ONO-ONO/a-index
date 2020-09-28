@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   patch "ex/update_on_timepass" => "ex#update_on_timepass"
   get "ex/email_edit" => "ex#email_edit"
   patch "ex/email_update" => "ex#email_update"
+  get "ex/ex_mail_renew" => "ex#ex_mail_renew"
+  patch "ex/ex_mail_recreate" => "ex#ex_mail_recreate"
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
