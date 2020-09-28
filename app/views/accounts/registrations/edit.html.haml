@@ -7,6 +7,8 @@
   .col-sm-6
     .card.bg-light.mb-3.img-thumbnail.card.border-warning.mb-3
       .card-body.px-2.py-3
+        %div.text-center パスワードは6文字以上～30文字以下で設定可能です。
+        %br
         - @account = current_account if @account == nil
         = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
 

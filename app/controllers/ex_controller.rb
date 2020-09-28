@@ -1,5 +1,5 @@
 class ExController < ApplicationController
-  before_action :ex_temporary_registration, only: [:ex_sign_in]
+  before_action :ex_temporary_registration, only: [:ex_sign_in, :ex_lank_up, :email_edit]
 
   require 'securerandom'
 
@@ -26,10 +26,26 @@ class ExController < ApplicationController
     @account = Account.find_by(id: current_account.id)
 
     # 認証コードを発行してから2時間(7200秒)が経過した場合は仮作成アカウントを消去する。
-    if @account.created_at + 7200 <= Time.now
+    if @account.updated_at + 7200 <= Time.now
       @account.destroy
       redirect_to root_path, alert: '認証コードを発行してから2時間が経過した為、仮作成したアカウントを削除しました'
     end
+  end
+
+  def ex_mail_renew
+  end
+
+  def ex_mail_recreate
+    @account = current_account
+    if ex_params["email"].present? && @account.update(email: ex_params["email"])
+      @account.update(random_timepass: SecureRandom.base64(3))
+      NewAccountMailer.send_message_to_account(@account).deliver_now
+      redirect_to ex_good_luck_path, notice: 'メールアドレス入力を確認しました。認証メールをお送りします'
+    else
+      @error_message = "アドレスを入力してください" if ex_params["email"].blank?
+      render 'ex_mail_renew'
+    end
+
   end
 
   def on_timepass
@@ -45,6 +61,9 @@ class ExController < ApplicationController
   end
 
   def ex_lank_up
+    if current_account.random_timepass.present?
+      current_account.update(email: "", random_timepass: "")
+    end
   end
 
   def ex_update
