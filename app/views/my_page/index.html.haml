@@ -30,12 +30,13 @@
       .col-sm-8
         = @account.my_animal_books_count
       .col-sm-2
-        = link_to 'パスワード変更', edit_account_registration_path(@account), :class => 'btn btn-primary'
+        = link_to 'パスワード変更', edit_account_registration_path, :class => 'btn btn-primary'
     %br
 
     .row.border-bottom
     %br
-    
+
+      -# アップグレートアカウントだった場合
     - if current_account.ex_status
       .row
         .col-sm-2
@@ -47,6 +48,7 @@
         %br
         %br
 
+      -# 一般アカウントがアップグレードの認証コード入力待ちだった場合
     - elsif current_account.random_timepass.present?
       .row
         .col-sm-12
@@ -55,7 +57,7 @@
           %h6 メールアドレスを仮作成しました。まだ完了していません。
           %h6 認証メールを登録アドレスに送りました。以下フォームに認証メールに添付した4桁のコードを2時間以内に入力してください。
           %br
-          .col-sm-4
+          .col-sm-12
             = form_for(@account, as: :accounts, url: ex_update_on_timepass_path) do |f|
               - if @error_message.present?
                 .alert.alert-danger 
@@ -63,8 +65,12 @@
               = f.text_field :random_timepass, value: "", autofocus: true, autocomplete: "random_timepass", :class => 'form-control'
               = f.hidden_field :email, value: @account.email
               %br
-              .actions.text-center
-                = f.submit "認証コードを送る", :class => 'btn btn-primary center-block'
+              .row
+                .col-sm-2
+                .actions
+                  = f.submit "認証コードを入力", :class => 'btn btn-primary center-block'
+                .col-sm-8
+                  = link_to '仮メールを再送信する', ex_ex_lank_up_path, :class => 'btn btn-success', data: { confirm: "仮メールを登録し直して認証コードを再送信しますか？(現在送っている認証コードは使用できなくなります。)" }
 
     - else
       .col-sm-12.text-center

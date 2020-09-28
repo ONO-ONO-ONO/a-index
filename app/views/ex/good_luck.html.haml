@@ -20,6 +20,8 @@
       = f.hidden_field :email, value: @account.email
       %br
       .actions.text-center
-        = f.submit "認証コードを送る", :class => 'btn btn-primary center-block'
+        = f.submit "認証コードを入力", :class => 'btn btn-primary center-block'
       %br
-      %br
+      .text-center
+        = link_to '仮メールを再送信する', ex_ex_mail_renew_path, :class => 'btn btn-success ', data: { confirm: "仮メールを登録し直して認証コードを再送信しますか？(登録し直すと、現在送っている認証コードは使用できなくなります。)" }
+

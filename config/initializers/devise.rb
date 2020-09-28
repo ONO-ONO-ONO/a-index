@@ -173,13 +173,13 @@ Devise.setup do |config|
   # ==> Configuration for :validatable
   # Range for password length.
   # パスワードの最小最大値の設定。
-  config.password_length = 6..128
+  config.password_length = 6..30
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
   # email登録時の正規表現パターン。
-  # config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
