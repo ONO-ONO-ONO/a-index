@@ -13,7 +13,7 @@ class Accounts::RegistrationsController < Devise::RegistrationsController
     @account = Account.new(account_params)
     if @account.save
       sign_in @account
-      redirect_to root_path, notice: '作成しました。AnimaIndexにようこそ！'
+      redirect_to root_path, notice: '作成しました。Freedum Labにようこそ！'
     else 
       render 'new'
     end
