@@ -5,7 +5,7 @@ class NewAccountMailer < ApplicationMailer
     @account = account
     if @account.ex_temporary_registration
       mail to: @account.email,
-          subject: "AnimaIndexアカウント登録認証メール" 
+          subject: "Freedum Labアカウント登録認証メール" 
     else
       mail to: @account.email,
           subject: "Anima隊員へのアップグレード認証メール" 

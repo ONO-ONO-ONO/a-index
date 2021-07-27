@@ -64,9 +64,12 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   root to: "home#top"
-  get "home/explanation" => "home#explanation"
+  get "home/animaindex_explanation" => "home#animaindex_explanation"
+  get "home/gameclub_explanation" => "home#gameclub_explanation"
   get "home/privacy" => "home#privacy"
   get "home/terms_of_service" => "home#terms_of_service"
+
+  get "animaindex_top/" => "animaindex_top#index"
 
   resources :animals do
     collection do
@@ -83,5 +86,11 @@ Rails.application.routes.draw do
   post "my_page/update" => "my_page#update"
   post "my_page/account_image_upload" => "my_page#account_image_upload"
   get "my_page/remove_image" => "my_page#remove_image"
+
+  # ゲーム部アプリ
+
+  resources :gameclub
+
+
 
 end

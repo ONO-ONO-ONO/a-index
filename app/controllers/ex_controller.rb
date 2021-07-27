@@ -53,7 +53,7 @@ class ExController < ApplicationController
 
     if @account.random_timepass == ex_params["random_timepass"]
       @account.update(role: 50, ex_status: true, ex_temporary_registration: false, random_timepass: "")
-      redirect_to root_path, notice: '作成しました。AnimaIndexにようこそ！'
+      redirect_to root_path, notice: '作成しました。Freedum Labにようこそ！'
     else
       @error_message = "認証コードが異なります"
       render 'good_luck'
@@ -83,7 +83,7 @@ class ExController < ApplicationController
 
     if @account.random_timepass == ex_params["random_timepass"]
       @account.update(role: 50, ex_status: true, random_timepass: "")
-      redirect_to root_path, notice: '作成しました。新たなAnimaIndexにようこそ！'
+      redirect_to root_path, notice: '作成しました。新たなFreedum Labにようこそ！'
     else
       @error_message = "認証コードが異なります"
       redirect_to my_page_path, alert: '認証コードが異なります'
