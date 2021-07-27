@@ -1,0 +1,34 @@
+.row
+  .col-sm-1
+  .col-sm-10
+
+    %h3.content-header ゲーム部アプリTOPページ
+
+    %br
+
+    .row
+      .col-sm-6.col-md-6
+        .card.bg-light.mb-3.img-thumbnail.card.border-primary.mb-3
+          -# %img.card-img-top{:alt => "画像", :src => "/assets/top_animalindex.png"}
+          .card-body.px-2.py-3
+            %h5.card-title 部屋を作る
+            %p.card-text 「ito」のゲーム部屋を作成
+            %p.mb-0
+              %a.btn.btn-outline-primary{:href => gameclub_index_path} 作成
+
+      .col-sm-6.col-md-6
+        .card.bg-light.mb-3.img-thumbnail.card.border-success.mb-3
+          -# %img.card-img-top{:alt => "画像", :src => "/assets/top_my_animal_book.png"}
+          .card-body.px-2.py-3
+            %h5.card-title 部屋を探す
+            %p.card-text 「ito」のゲーム部屋を探す
+            %p.mb-0
+              %a.btn.btn-outline-success{:href => gameclub_index_path} 探す
+
+    .row
+      .col-sm-12.col-md-12
+        .card.bg-light.mb-3.img-thumbnail.card.border-warning.mb-3
+          -# %img.card-img-top{:alt => "画像", :src => "/assets/unknown.png"}
+          .card-body.px-2.py-3
+            %h5.card-title ito ルール説明
+            %p.card-text ルール記載予定

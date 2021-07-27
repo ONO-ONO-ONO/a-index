@@ -111,8 +111,13 @@ ActiveRecord::Schema.define(version: 2020_09_22_120425) do
     t.string "my_animal_image", null: false
   end
 
-  create_table "old_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "id"
+  create_table "old_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "user_name", null: false
+    t.string "email", null: false
+    t.string "password_digest"
+    t.string "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "redlists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
